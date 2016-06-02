@@ -1,0 +1,8 @@
+.settings/**
+.metadata/**
+.externalToolBuilders/**
+.classpath
+.project
+/bin/
+/build/
+/target/

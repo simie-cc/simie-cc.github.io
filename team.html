@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+<meta charset='utf-8' />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex, nofollow">
+<meta name="googlebot" content="noindex, nofollow">
+<title>分隊</title>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.3.js"></script>
+<style type="text/css">
+    html {
+    font-size: 40px;
+    width: 640px;
+}
+
+#person-block {}
+
+.block {
+    font-size: 1em;
+    width: 200px;
+    border-radius: 5px;
+    display: inline-block;
+    margin: 5px 0;
+    padding: 10px 0px 10px 7px;
+    box-sizing: border-box;
+}
+
+.generatePad {
+    border-top: 2px solid #000;
+    text-align: center;
+    display: block;
+    clear: both;
+    padding: 3px;
+}
+
+button {
+    font-size: 1.6em;
+}
+
+.on {
+    color: blue;
+    border: 1px solid #02F;
+}
+
+.off {
+    color: #888;
+    border: 1px dashed #666;
+}
+
+#show-block {
+    display: block;
+    unicode-bidi: embed;
+    font-family: monospace;
+    white-space: pre;
+}
+
+.memo-text {
+    font-size: 0.6em;
+}
+
+</style>
+
+<script type='text/javascript'>//<![CDATA[
+$(window).load(function(){
+    Array.prototype.remove = function(elm)
+    {
+        var index = this.indexOf(elm);
+        if (index > -1) this.splice(index, 1);
+    };
+    Array.prototype.contains = function(elm)
+    {
+        return this.indexOf(elm) !== -1;
+    };
+    var DateUtil = (function() {
+        function pad(n, width, z) {
+            z = z || '0';
+            n = n + '';
+            return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
+        }
+        return {
+            formatDate: function(d) {
+                if (!d) return "";
+    
+                return d.getMonth() + "/" +
+                    pad(d.getDate(), 2) + " " +
+                    pad(d.getHours(), 2) + ":" +
+                    pad(d.getMinutes(), 2) + ":" +
+                    pad(d.getSeconds(), 2);
+            }
+        };
+    }());
+    var roller = (function() {
+        var _srcElmSel = '#person-block', _targetElmSel = '#show-block';
+        var _srcElm = null,
+            _targetElm = null;
+    
+        function switchButton(enable) {
+            if (typeof enable !== 'boolean') {
+                if ($(this).hasClass("on"))
+                    enable = false;
+                else
+                    enable = true;
+            }
+    
+            $(this)
+                .removeClass("on off")
+                .addClass(enable ? "on" : "off");
+        }
+        
+        /** members 中所有人的計數+1 */
+        function addCountToAll(members, addValue)
+        {
+            if (typeof addValue === 'undefined')
+                addValue = 1;
+    
+            var member_names = members.map(function(e) { return e.name; });
+            _srcElm.find(".block").each(function() {
+                if (member_names.contains($(this).find("name").text()))
+                {
+                    if ($(this).find(".memo-text").length == 0)
+                        $(this).append("<span class='memo-text'>0</span>");
+                
+                    var memo = $(this).find(".memo-text");
+                    var value = parseInt(memo.text());
+                    value += addValue;
+                    if (value < 0)
+                        value = 0;
+                    memo.text(value);
+                }
+            });
+        }
+    
+        function personlist(onOnly) {
+            var personarray = [];
+            _srcElm.find(".block").each(function() {
+                //alert($(this).html());
+                var data = {
+                    name: $(this).find("name").text(),
+                    count: parseInt($(this).find(".memo-text").text()) || 0, 
+                    on: $(this).hasClass("on")
+                };
+                //console.log(data);
+                personarray.push(data);
+            });
+            
+            if (onOnly)
+                personarray = personarray.filter(function(p) { return p.on });
+            return personarray;
+        }
+        
+        /** 將 成員的 array 轉為字串 */
+        function toStringMembers(j)
+        {
+            return j.map(function(elm) { return elm.name + (elm.factor ? elm.factor : "") }).join();
+        }
+        
+        /** randomize the array */
+        function randomArray(arr_src)
+        {
+            var arr = arr_src.slice(0);
+            for (var i = 0; i < 10; ++ i)
+            {
+                var index1 = Math.floor(Math.random() * arr.length), 
+                    index2 = Math.floor(Math.random() * arr.length);
+                if (index1 == index2) continue;
+                
+                var item = arr[index1];
+                arr[index1] = arr[index2];
+                arr[index2] = item;
+            }
+            return arr;
+        }
+    
+        /** 產生組隊結果 */
+        function doGenerate() {
+            var joiners = personlist(true), 
+                joiners_original = joiners.slice(0);
+            //localStorage['personlist'] = JSON.stringify(personarray_raw);
+            //var joiners = findJoiner(personarray, -1);
+            if (joiners.length < 4)
+            {
+                alert("沒有人要參加啦！");
+                return;
+            }
+            localStorage['personlist'] = JSON.stringify(joiners.map(function(elm) { return elm.name; }));
+            console.log("參加清單: " + toStringMembers(joiners));
+    
+            var gamePlayers = [];
+            while (gamePlayers.length < 4)
+            {
+                // get maxCount
+                var maxCount = Math.max.apply(null, joiners.map(function(p) { return p.count; }));
+    
+                // cal factors
+                var sumFactors = 0;
+                joiners.forEach(function(elm) {
+                    elm.factor = (maxCount - elm.count) * 30 + 10;
+                    sumFactors += elm.factor;
+                });
+                //printJoiners(joiners);
+                
+                var random = Math.floor(Math.random() * sumFactors);
+                var matcher = joiners.find(function(elm) {
+                    random -= elm.factor;
+                    return random <= 0;
+                });
+                
+                gamePlayers.push(matcher);
+                joiners.remove(matcher);
+            }
+    
+            gamePlayers = randomArray(gamePlayers);
+            addCountToAll(gamePlayers);
+            console.log("分隊: " + toStringMembers(gamePlayers));
+    
+            var htmltext = "<div class='teamitem'><hr/>" +
+                "<span class='team'>分隊: (" + DateUtil.formatDate(new Date()) + ")\n" + 
+                "<name>" + gamePlayers[0].name + "</name>,<name>" + gamePlayers[1].name + "</name>\n" +
+                "  v.s \n" +
+                "<name>" + gamePlayers[2].name + "</name>,<name>" + gamePlayers[3].name + "</name>" +
+                "</span>" +
+                //"<span class='list'>原本清單: " + toStringMembers(joiners_original) + "</span>\n" +
+                "</div>";
+            var teamitem = $(htmltext);
+            teamitem.on("click", removeMe);
+    
+            _targetElm.prepend(teamitem);
+    
+            localStorage['results'] = htmltext;
+        }
+        
+        /** 重置所有人的計數 */
+        function doReset()
+        {
+            _srcElm.find(".block").each(function() {
+                if ($(this).find(".memo-text").length == 0)
+                    $(this).append("<span class='memo-text'>0</span>");
+            
+                var memo = $(this).find(".memo-text");
+                memo.text(0);
+            });
+        }
+    
+        function removeMe() {
+            var names = [];
+            $(this).find("name").each(function() {
+                names.push({
+                    name: $(this).text()
+                });
+            });
+            addCountToAll(names, -1);
+            $(this).remove();
+        }
+    
+        function initialFromStorage() {
+            var storagecode = localStorage['personlist'];
+            if (storagecode) {
+                try {
+                    var lists = JSON.parse(storagecode);
+                    _srcElm.find(".block").each(function() {
+                        var mytext = $(this).find("name").text();
+                        if (lists.indexOf(mytext) > -1)
+                            switchButton.call(this, true);
+                        else
+                            switchButton.call(this, false);
+                    });
+                } catch (e) {}
+            }
+    
+            var results = localStorage['results'];
+            if (results) {
+                _targetElm.html(results);
+            }
+    
+            $(".teamitem").on("click", removeMe);
+        }
+        
+        $(function() {
+            _srcElm = $(_srcElmSel);
+            _targetElm = $(_targetElmSel);
+    
+            doReset();
+            initialFromStorage();
+            _srcElm.find(".block").on('click', switchButton);
+            _srcElm.find("#generate").on('click', doGenerate);
+            _srcElm.find("#reset").on('click', doReset);
+        });
+    }());
+
+});//]]> 
+
+</script>
+
+<h3>分隊 Version 0.14.20160602.github</h3>
+<div id='person-block'>
+    <div class='block on'><name>Mandy</name></div>
+    <div class='block on'><name>月月</name></div>
+    <div class='block on'><name>貝貝</name></div>
+    <div class='block on'><name>丹丹</name></div>
+    <div class='block on'><name>西西</name></div>
+    <div class='block on'><name>琳琳</name></div>
+    <div class='block on'><name>大食怪</name></div>
+    <div class='block on'><name>麥片</name></div>
+    <div class='block on'><name>志樺</name></div>
+    <div class='block on'><name>CCT</name></div>
+    <div class='block on'><name>Wade</name></div>
+    <div class='block on'><name>唯佑</name></div>
+    <hr/>
+    <div class='block off'><name>路人甲</name></div>
+    <div class='block off'><name>路人乙</name></div>
+    <div class='block off'><name>路人丙</name></div>
+    <div class='generatePad'>
+        <button id='generate'>Generate</button>
+        <button id='reset'>Reset</button>
+    </div>
+</div>
+
+<div id='show-block'>
+</div>
+  
+</html>
