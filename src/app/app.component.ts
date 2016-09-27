@@ -26,14 +26,21 @@ import { ArrayUtil } from './shared';
 })
 export class AppComponent {
     mode: PageMode = PageMode.SELECT;
-    nameList: Array<NameItem> = []
+    nameList: Array<PersonRecord>;
 
     constructor() {
-        let names = ['月月','丹丹','Mandy','大食怪','西西','琳琳','麥片','志樺','CCT','Wade','貝貝','唯佑'];
-        for (let n of names)
-            this.nameList.push(new NameItem(n));
-
-        localStorage.setItem("abc", "def");
+        let saved_list = localStorage[STORAGE_KEY];
+        if (saved_list)
+        {
+            this.nameList = JSON.parse(saved_list);
+        }
+        else
+        {
+            let names = ['月月','丹丹','Mandy','大食怪','西西','琳琳','麥片','志樺','CCT','Wade','貝貝','唯佑'];
+            this.nameList = names.map((name) => new PersonRecord(name));
+            // for (let n of names)
+            //     this.nameList.push(new PersonRecord(n));
+        }
     }
 
     /** 切換顥示模式 */
@@ -42,29 +49,33 @@ export class AppComponent {
     }
 
     /** 切換 參加/不參加 */
-    doItemSwitch(item: NameItem) {
-        item.on = ! item.on;
+    doItemSwitch(item: PersonRecord) {
+        item.join = ! item.join;
     }
 
     /** 產生結果 */
     doGenerate() {
-        let old_list = this.personlist(true);
-        this.debug_logList(old_list);
+        let unsort_list = this.personlist(true);
+        unsort_list.forEach((value) => value.count ++);
+
+        //this.debug_logList(old_list);
         this.debug_logList(
-            this.randomizeArray(old_list));
+            this.randomizeArray(unsort_list));
+
+        localStorage[STORAGE_KEY] = JSON.stringify(this.nameList);
     }
 
     /** 取得有選擇的人員清單 */
     private personlist(onOnly: boolean) {
         var personarray = [];
         if (onOnly)
-            return this.nameList.filter((value) => value.on);
+            return this.nameList.filter((value) => value.join);
         else
             return this.nameList;
     }
 
-    /** 將 NameItem 轉換為 name 的 Array，並用 console.log 輸出 */
-    private debug_logList(list: Array<NameItem>)
+    /** 將 PersonRecord 轉換為 name 的 Array，並用 console.log 輸出 */
+    private debug_logList(list: Array<PersonRecord>)
     {
         console.log(
             list.map((value) => value.name)
@@ -72,22 +83,50 @@ export class AppComponent {
     }
 
     /** randomize the array */
-    private randomizeArray(arr_src: Array<NameItem>)
+    private randomizeArray(arr_src: Array<PersonRecord>): Array<PersonRecord>
     {
-        var arr = arr_src.slice(0);
-        for (var i = 0; i < 10; ++ i)
+        const max_random = arr_src.length * 1000;
+        var randomMap = {};
+        for (let item of arr_src)
         {
-            var index1 = Math.floor(Math.random() * arr.length * 1000) % arr.length, 
-                index2 = Math.floor(Math.random() * arr.length * 1000) % arr.length;
-            if (index1 == index2) continue;
-            
-            var item = arr[index1];
-            arr[index1] = arr[index2];
-            arr[index2] = item;
+            let index = 0;
+            while (true) {
+                index = Math.floor(Math.random() * max_random);
+                if (! randomMap[index])
+                    break;
+            }
+
+            randomMap[index] = item;
         }
-        return arr;
+
+        return Object.keys(randomMap).map((value) => randomMap[value]);
+    }
+
+    /** randomize the array */
+    private randomizeArrayByFactor(arr_src: Array<PersonRecord>, countFactor: number, baseFactor: number): Array<PersonRecord>
+    {
+        //let max_count = Math.max.apply(null, arr_src.map((value) => value.count));
+        //const max_random = arr_src.length * 1000;
+        var randomMap = {};
+        for (let item of arr_src)
+        {
+            let maxFactor = item.count * countFactor + baseFactor;
+            while (true) {
+                let index = Math.floor(Math.random() * maxFactor);
+                if (! randomMap[index])
+                {    
+                    randomMap[index] = item;
+                    break;
+                }
+            }
+        }
+
+        return Object.keys(randomMap).map((value) => randomMap[value]);
     }
 }
+
+/** 儲存在 local storage 中的鍵值名稱 */
+const STORAGE_KEY: string = "list";
 
 /** 顥示模式 */
 enum PageMode {
@@ -95,16 +134,19 @@ enum PageMode {
 }
 
 /** 人員結構 */
-class NameItem
+class PersonRecord
 {
+    /** 姓名 */
     name: string;
-    on: boolean;
+    /** 是否有參加 */
+    join: boolean;
+    /** 參加次數 */
     count: number;
 
     constructor(name: string)
     {
         this.name = name;
-        this.on = true;
+        this.join = true;
         this.count = 0;
     }
 }

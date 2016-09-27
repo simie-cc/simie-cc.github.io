@@ -8,8 +8,6 @@ h3 .sub {
     font-size: 0.7em;
 }
 
-
-
 .block {
     font-size: 1em;
     width: 23%;
@@ -19,6 +17,7 @@ h3 .sub {
     margin: 10px 1%;
     padding: 1em 0;
     box-sizing: border-box;
+    position: relative;
 
     /* off style */
     border: 2px dashed #666;
@@ -58,5 +57,8 @@ button {
 }
 
 .memo-text {
+    position: absolute;
     font-size: 0.6em;
+    bottom: 5%;
+    right: 5%;
 }

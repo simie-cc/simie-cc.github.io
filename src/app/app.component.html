@@ -3,9 +3,10 @@
     <span class="sub">Version 0.15.20160927.github</span></h3>
 <div id='person-block' *ngIf="mode == 0" [@flyInOut]="'in'">
     <div *ngFor="let nameItem of nameList"
-         class='block' [ngClass]="{on: nameItem.on}"
+         class='block' [ngClass]="{on: nameItem.join}"
          (click)='doItemSwitch(nameItem)'>
         {{ nameItem.name }}
+        <div class="memo-text">{{ nameItem.count }}</div>
         </div>
 
     <hr/>
