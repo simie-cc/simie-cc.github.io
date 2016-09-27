@@ -1,3 +1,21 @@
-<h1>
-  {{title}}
-</h1>
+
+<h3 (click)='doSwitchMode()'>分隊
+    <span class="sub">Version 0.15.20160927.github</span></h3>
+<div id='person-block' *ngIf="mode == 0" [@flyInOut]="'in'">
+    <div *ngFor="let nameItem of nameList"
+         class='block' [ngClass]="{on: nameItem.on}"
+         (click)='doItemSwitch(nameItem)'>
+        {{ nameItem.name }}
+        </div>
+
+    <hr/>
+
+    <div class='generatePad'>
+        <button id='generate' (click)='doGenerate()'>Generate</button>
+        <button id='reset'>Reset</button>
+    </div>
+</div>
+
+<div id='show-block' *ngIf="mode == 1" [@flyInOut]="'in'">
+    RESULT
+</div>

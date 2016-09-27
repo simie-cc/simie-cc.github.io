@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+@import '../node_modules/reset-css/reset.css';
+@import url(http://fonts.googleapis.com/earlyaccess/notosanstc.css); 
+
+html {
+    font-family: 'Noto Sans TC', sans-serif; 
+    font-size: 160%;
+}
+
+body {
+    text-align: center;
+}
