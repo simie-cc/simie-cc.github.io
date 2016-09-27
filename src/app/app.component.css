@@ -1,0 +1,49 @@
+html {
+    font-size: 40px;
+    width: 640px;
+}
+
+#person-block {}
+
+.block {
+    font-size: 1em;
+    width: 200px;
+    border-radius: 5px;
+    display: inline-block;
+    margin: 5px 0;
+    padding: 10px 0px 10px 7px;
+    box-sizing: border-box;
+}
+
+.generatePad {
+    border-top: 2px solid #000;
+    text-align: center;
+    display: block;
+    clear: both;
+    padding: 3px;
+}
+
+button {
+    font-size: 1.6em;
+}
+
+.on {
+    color: blue;
+    border: 1px solid #02F;
+}
+
+.off {
+    color: #888;
+    border: 1px dashed #666;
+}
+
+#show-block {
+    display: block;
+    unicode-bidi: embed;
+    font-family: monospace;
+    white-space: pre;
+}
+
+.memo-text {
+    font-size: 0.6em;
+}
