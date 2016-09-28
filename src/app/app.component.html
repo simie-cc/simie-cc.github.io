@@ -1,5 +1,6 @@
 
-<h3 (click)='doSwitchMode()'>分隊
+<h3>分隊
+    <img class='menu' src="assets/menu.svg" height="32px" (click)='doSwitchMode()' />
     <div class="sub">Ver. 0.15.20160928</div></h3>
 <div id='person-block' *ngIf="mode == 0" [@flyInOut]="'in'">
     <div *ngFor="let nameItem of nameList"
@@ -16,6 +17,12 @@
 </div>
 
 <div id='show-block' *ngIf="mode == 1" [@flyInOut]="'in'">
-    RESULT
-    <button (click)='doGoBack()'>Back</button>
+    <div class="match-block">
+        <img src='assets/badminton_court.svg' width="100%" />
+        <div class='team1'>琳琳<br>西西</div>
+        <div class='team2'>丹丹<br>mandy</div>
+    </div>
+    <div class='generatePad'>
+        <button (click)='doGoBack()'>Back</button>
+    </div>
 </div>

@@ -25,7 +25,8 @@ import { ArrayUtil } from './shared';
 ]
 })
 export class AppComponent {
-    mode: PageMode = PageMode.SELECT;
+    //mode: PageMode = PageMode.SELECT;
+    mode: PageMode = PageMode.RESULT; // TODO debuging
     nameList: Array<PersonRecord>;
 
     constructor() {
@@ -108,7 +109,7 @@ export class AppComponent {
         return Object.keys(randomMap).map((value) => randomMap[value]);
     }
 
-    /** randomize the array */
+    /** randomize the array / factoring mode */
     private randomizeArrayByFactor(arr_src: Array<PersonRecord>, countFactor: number, baseFactor: number): Array<PersonRecord>
     {
         //let max_count = Math.max.apply(null, arr_src.map((value) => value.count));

@@ -15,6 +15,13 @@
     background-color: none;
 }
 
+.block .memo-text {
+    position: absolute;
+    font-size: 0.6em;
+    bottom: 5%;
+    right: 5%;
+}
+
 .on {
     /*color: blue;*/
     border: 2px solid #329FFF;
@@ -35,16 +42,19 @@
     width: 100%;
 }
 
-#show-block {
-    display: block;
-    unicode-bidi: embed;
-    font-family: monospace;
-    white-space: pre;
+.match-block {
+    display: flex;
 }
 
-.memo-text {
+.match-block > div {
+    display: inline-block;
     position: absolute;
-    font-size: 0.6em;
-    bottom: 5%;
-    right: 5%;
+    top: 20%;
+}
+
+.match-block > div.team1 {
+    left: 20%;
+}
+.match-block > div.team2 {
+    right: 20%;
 }
