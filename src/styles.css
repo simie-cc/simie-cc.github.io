@@ -10,3 +10,36 @@ html {
 body {
     text-align: center;
 }
+
+h3 { 
+    font-size: 1.3em;
+    padding: 1em 0;
+    background-color: #c4ffb2;/*#9BF1FF*/
+    position: relative;
+}
+
+h3 .sub {
+    font-size: 0.4em;
+    color: #505050;
+    display: inline-block;
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+}
+
+button {
+    font-size: 1.3em;
+    color: white;
+    background-color: #ff7d4c;
+    border: none;
+    border-radius: .1em;
+    display: inline-block;
+    margin: 0 5px;
+    padding: .4em .4em;
+
+    box-shadow: .05em .05em .05em #888888;
+}
+
+button:active {
+    transform: scale(0.98);
+}

@@ -63,6 +63,12 @@ export class AppComponent {
             this.randomizeArray(unsort_list));
 
         localStorage[STORAGE_KEY] = JSON.stringify(this.nameList);
+
+        this.mode = PageMode.RESULT;
+    }
+
+    doGoBack() {
+        this.mode = PageMode.SELECT;
     }
 
     /** 取得有選擇的人員清單 */
