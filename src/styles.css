@@ -11,6 +11,10 @@ body {
     text-align: center;
 }
 
+h3,h4 {
+    vertical-align: middle;
+}
+
 h3 { 
     font-size: 1.3em;
     padding: 1em 0;
@@ -27,7 +31,13 @@ h3 .sub {
     right: 5px;
 }
 
-h3 .menu {
+h4 { 
+    font-size: 1.1em;
+    padding: 1em 0;
+    position: relative;
+}
+
+.menu {
     opacity: 0.5;
     position: absolute;
     top: calc(50% - 16px);

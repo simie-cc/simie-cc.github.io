@@ -2,6 +2,7 @@
 <h3>分隊
     <img class='menu' src="assets/menu.svg" height="32px" (click)='doSwitchMode()' />
     <div class="sub">Ver. 0.15.20160928</div></h3>
+
 <div id='person-block' *ngIf="mode == 0" [@flyInOut]="'in'">
     <div *ngFor="let nameItem of nameList"
          class='block' [ngClass]="{on: nameItem.join}"
@@ -11,18 +12,34 @@
         </div>
 
     <div class='generatePad'>
-        <button (click)='doGenerate()'>Generate</button>
-        <button >Reset</button>
+        <button (click)='doGenerate()'>單次</button>
+        <button (click)='doGenerate()'>全部</button>
+        <button >重設</button>
     </div>
 </div>
 
 <div id='show-block' *ngIf="mode == 1" [@flyInOut]="'in'">
     <div class="match-block">
         <img src='assets/badminton_court.svg' width="100%" />
-        <div class='team1'>琳琳<br>西西</div>
-        <div class='team2'>丹丹<br>mandy</div>
+        <div class='team1'>{{ matchUp[0] }}<br>{{ matchUp[1] }}</div>
+        <div class='team2'>{{ matchUp[2] }}<br>{{ matchUp[3] }}</div>
     </div>
     <div class='generatePad'>
         <button (click)='doGoBack()'>Back</button>
     </div>
 </div>
+
+<div id='setup' *ngIf="mode == 2">
+    <div class="setup-core-block">
+        <h4>
+            <img class='menu' src="assets/menu.svg" height="32px" (click)='doSwitchMode()' />
+            分隊設定
+        </h4>
+        <ul>
+            <li>選擇分隊</li>
+            <li>模式：simple priority</li>
+            <li>結果顯示</li>
+        </ul>
+    </div>
+</div>
+

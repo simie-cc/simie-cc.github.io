@@ -26,8 +26,9 @@ import { ArrayUtil } from './shared';
 })
 export class AppComponent {
     //mode: PageMode = PageMode.SELECT;
-    mode: PageMode = PageMode.RESULT; // TODO debuging
+    mode: PageMode = PageMode.SETUP; // TODO debuging
     nameList: Array<PersonRecord>;
+    matchUp: Array<String>;
 
     constructor() {
         let saved_list = localStorage[STORAGE_KEY];
@@ -59,9 +60,9 @@ export class AppComponent {
         let unsort_list = this.personlist(true);
         unsort_list.forEach((value) => value.count ++);
 
-        //this.debug_logList(old_list);
-        this.debug_logList(
-            this.randomizeArray(unsort_list));
+        let sorted_list = this.randomizeArray(unsort_list);
+        this.debug_logList(sorted_list);
+        this.matchUp = sorted_list.slice(0, 4).map((value) => value.name);
 
         localStorage[STORAGE_KEY] = JSON.stringify(this.nameList);
 
@@ -137,7 +138,7 @@ const STORAGE_KEY: string = "list";
 
 /** 顥示模式 */
 enum PageMode {
-    SELECT = 0, RESULT = 1
+    SELECT = 0, RESULT = 1, SETUP = 2
 }
 
 /** 人員結構 */
