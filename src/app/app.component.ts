@@ -25,8 +25,8 @@ import { ArrayUtil } from './shared';
 ]
 })
 export class AppComponent {
-    //mode: PageMode = PageMode.SELECT;
-    mode: PageMode = PageMode.SETUP; // TODO debuging
+    mode: PageMode = PageMode.SELECT;
+    //mode: PageMode = PageMode.SETUP; // TODO debuging
     nameList: Array<PersonRecord>;
     matchUp: Array<String>;
 

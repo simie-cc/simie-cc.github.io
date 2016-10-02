@@ -43,20 +43,26 @@
 }
 
 .match-block {
-    display: flex;
+    position: relative;
 }
 
 .match-block > div {
     display: inline-block;
     position: absolute;
-    top: 20%;
 }
 
 .match-block > div.team1 {
-    left: 20%;
+    left: 10%;
 }
 .match-block > div.team2 {
-    right: 20%;
+    left: 65%;
+}
+.match-block > div.member1 {
+    top: 25%;
+}
+.match-block > div.member2 {
+    top: 63%;
+    padding-left: .5em;
 }
 
 #setup {

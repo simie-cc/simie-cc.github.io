@@ -20,9 +20,11 @@
 
 <div id='show-block' *ngIf="mode == 1" [@flyInOut]="'in'">
     <div class="match-block">
-        <img src='assets/badminton_court.svg' width="100%" />
-        <div class='team1'>{{ matchUp[0] }}<br>{{ matchUp[1] }}</div>
-        <div class='team2'>{{ matchUp[2] }}<br>{{ matchUp[3] }}</div>
+        <img src='assets/badminton_court2.svg' width="100%" />
+        <div class="team1 member1">{{ matchUp[0] }}</div>
+        <div class="team1 member2">{{ matchUp[1] }}</div>
+        <div class="team2 member1">{{ matchUp[2] }}</div>
+        <div class="team2 member2">{{ matchUp[3] }}</div>
     </div>
     <div class='generatePad'>
         <button (click)='doGoBack()'>Back</button>
