@@ -49,6 +49,13 @@
 .match-block > div {
     display: inline-block;
     position: absolute;
+    font-size: 2em;
+}
+
+@media(max-width: 400px) {
+    .match-block > div {
+        font-size: 1em;
+    }
 }
 
 .match-block > div.team1 {
@@ -70,7 +77,7 @@
     z-index: 0;
 
     overflow: hidden;
-    position: absolute; 
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
