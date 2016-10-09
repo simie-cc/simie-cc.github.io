@@ -5,8 +5,7 @@ import { Component,
       style,
       transition,
       animate } from '@angular/core';
-import { ArrayUtil } from './shared';
-import { PersonRecord } from './shared/'
+import { ArrayUtil, PersonRecord, MatchUp } from './shared';
 
 @Component({
   selector: 'app-root',
@@ -29,7 +28,7 @@ export class AppComponent {
     mode: PageMode = PageMode.SELECT;
     //mode: PageMode = PageMode.SETUP; // TODO debuging
     nameList: Array<PersonRecord>;
-    matchUp: Array<String>;
+    matchUps: Array<MatchUp> = [];
 
     constructor() {
         let saved_list = localStorage[STORAGE_KEY];
@@ -48,6 +47,7 @@ export class AppComponent {
 
     /** 切換顥示模式 */
     doSwitchMode() {
+        // 在 SELECT 和 RESULT 間切換
         this.mode = (this.mode + 1) % 2;
     }
 
@@ -59,15 +59,24 @@ export class AppComponent {
     /** 產生結果 */
     doGenerate_once() {
         let unsort_list = this.personlist(true);
-        unsort_list.forEach((value) => value.count ++);
 
         let sorted_list = this.randomizeArrayByFactor(unsort_list, 30, 10);
         this.debug_logList(sorted_list);
-        this.matchUp = sorted_list.slice(0, 4).map((value) => value.name);
+
+        let joiner_list = sorted_list.slice(0, 4); 
+        joiner_list.forEach((value) => value.count ++);
+        this.matchUps.unshift(new MatchUp(
+            joiner_list.map((value) => value.name)
+        ));
 
         localStorage[STORAGE_KEY] = JSON.stringify(this.nameList);
 
         this.mode = PageMode.RESULT;
+    }
+
+    /** 產生結果: 全部產生 */
+    doGenerate_all() {
+
     }
 
     /** 重設參加次數 */
@@ -122,21 +131,21 @@ export class AppComponent {
     {
         //let max_count = Math.max.apply(null, arr_src.map((value) => value.count));
         //const max_random = arr_src.length * 1000;
-        var randomMap = {};
+        //var randomMap = {};
+        var randomList: Array<{person: PersonRecord, weight: number}> = [];
         for (let item of arr_src)
         {
             let maxFactor = item.count * countFactor + baseFactor;
-            while (true) {
-                let index = Math.floor(Math.random() * maxFactor);
-                if (! randomMap[index])
-                {    
-                    randomMap[index] = item;
-                    break;
-                }
-            }
+            let randomWeight: number = Math.floor(Math.random() * maxFactor);
+            
+            randomList.push({person: item, weight: randomWeight});
         }
 
-        return Object.keys(randomMap).map((value) => randomMap[value]);
+        console.log(randomList.map((value) => `${value.person.name}(${value.weight})`));
+
+        return randomList
+                     .sort((a,b) => a.weight - b.weight)
+                     .map((value) => value.person);
     }
 }
 
@@ -147,3 +156,4 @@ const STORAGE_KEY: string = "list";
 enum PageMode {
     SELECT = 0, RESULT = 1, SETUP = 2
 }
+

@@ -1,6 +1,6 @@
 
-<h3>分隊
-    <img class='menu' src="assets/menu.svg" height="32px" (click)='doSwitchMode()' />
+<h3 (click)='doSwitchMode()'>分隊
+    <img class='menu' src="assets/menu.svg" height="32px" (click)='doEnterSetup()' />
     <div class="sub">Ver. 0.15.20160928</div></h3>
 
 <div id='person-block' *ngIf="mode == 0" [@flyInOut]="'in'">
@@ -19,16 +19,17 @@
 </div>
 
 <div id='show-block' *ngIf="mode == 1" [@flyInOut]="'in'">
-    <div class="match-block">
-        <img src='assets/badminton_court2.svg' width="100%" />
-        <div class="team1 member1">{{ matchUp[0] }}</div>
-        <div class="team1 member2">{{ matchUp[1] }}</div>
-        <div class="team2 member1">{{ matchUp[2] }}</div>
-        <div class="team2 member2">{{ matchUp[3] }}</div>
-    </div>
-    <div class='generatePad'>
+    <!--<div class='generatePad'>
         <button (click)='doGoBack()'>Back</button>
+    </div>-->  
+    <div class="match-block" *ngFor="let item of matchUps">
+        <img src='assets/badminton_court2.svg' width="100%" />
+        <div class="team1 member1">{{ item.joiners[0] }}</div>
+        <div class="team1 member2">{{ item.joiners[1] }}</div>
+        <div class="team2 member1">{{ item.joiners[2] }}</div>
+        <div class="team2 member2">{{ item.joiners[3] }}</div>
     </div>
+    
 </div>
 
 <div id='setup' *ngIf="mode == 2">

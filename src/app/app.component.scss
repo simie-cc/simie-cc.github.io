@@ -28,13 +28,6 @@
     background-color: #B2EAFF;
 }
 
-.generatePad {
-    text-align: center;
-    display: block;
-    clear: both;
-    padding: 10px;
-}
-
 #person-block, #show-block {
     /* border: 1px solid black; */
     box-sizing: border-box;
@@ -49,31 +42,19 @@
         display: inline-block;
         position: absolute;
         font-size: 2em;
+        @media(max-width: 400px) {
+            font-size: 1em;
+        }
     }
 
     > img {
         opacity: 0.4;
     }
-}
 
-@media(max-width: 400px) {
-    .match-block > div {
-        font-size: 1em;
-    }
-}
-
-.match-block > div.team1 {
-    left: 10%;
-}
-.match-block > div.team2 {
-    left: 65%;
-}
-.match-block > div.member1 {
-    top: 25%;
-}
-.match-block > div.member2 {
-    top: 63%;
-    padding-left: .5em;
+    > div.team1 { left: 10%; }
+    > div.team2 { left: 65%; }
+    > div.member1 { top: 25%; }
+    > div.member2 { top: 63%; padding-left: .5em; }
 }
 
 #setup {
