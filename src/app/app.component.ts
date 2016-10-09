@@ -6,11 +6,12 @@ import { Component,
       transition,
       animate } from '@angular/core';
 import { ArrayUtil } from './shared';
+import { PersonRecord } from './shared/'
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'], 
+  styleUrls: ['./app.component.scss'], 
   animations: [
     trigger('flyInOut', [
         state('in', style({transform: 'translateX(0) scale(1)'})),
@@ -56,17 +57,23 @@ export class AppComponent {
     }
 
     /** 產生結果 */
-    doGenerate() {
+    doGenerate_once() {
         let unsort_list = this.personlist(true);
         unsort_list.forEach((value) => value.count ++);
 
-        let sorted_list = this.randomizeArray(unsort_list);
+        let sorted_list = this.randomizeArrayByFactor(unsort_list, 30, 10);
         this.debug_logList(sorted_list);
         this.matchUp = sorted_list.slice(0, 4).map((value) => value.name);
 
         localStorage[STORAGE_KEY] = JSON.stringify(this.nameList);
 
         this.mode = PageMode.RESULT;
+    }
+
+    /** 重設參加次數 */
+    doResetCount()
+    {
+        this.nameList.forEach(value => value.count = 0);
     }
 
     doGoBack() {
@@ -139,22 +146,4 @@ const STORAGE_KEY: string = "list";
 /** 顥示模式 */
 enum PageMode {
     SELECT = 0, RESULT = 1, SETUP = 2
-}
-
-/** 人員結構 */
-class PersonRecord
-{
-    /** 姓名 */
-    name: string;
-    /** 是否有參加 */
-    join: boolean;
-    /** 參加次數 */
-    count: number;
-
-    constructor(name: string)
-    {
-        this.name = name;
-        this.join = true;
-        this.count = 0;
-    }
 }

@@ -44,12 +44,16 @@
 
 .match-block {
     position: relative;
-}
 
-.match-block > div {
-    display: inline-block;
-    position: absolute;
-    font-size: 2em;
+    > div {
+        display: inline-block;
+        position: absolute;
+        font-size: 2em;
+    }
+
+    > img {
+        opacity: 0.4;
+    }
 }
 
 @media(max-width: 400px) {
