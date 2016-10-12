@@ -1,24 +1,10 @@
 
 <h3 (click)='doSwitchMode()'>分隊
-    <img class='menu' src="assets/menu.svg" height="32px" (click)='doEnterSetup()' />
+    <img class='menu' src="assets/menu.svg" height="32px" (click)='doEnterSetup($event)' />
     <div class="sub">Ver. 0.15.20160928</div></h3>
 
-<div id='person-block' *ngIf="mode == 0" [@flyInOut]="'in'">
-    <div *ngFor="let nameItem of nameList"
-         class='block' [ngClass]="{on: nameItem.join}"
-         (click)='doItemSwitch(nameItem)'>
-        {{ nameItem.name }}
-        <div class="memo-text">{{ nameItem.count }}</div>
-        </div>
 
-    <div class='generatePad'>
-        <button (click)='doGenerate_once()'>單次</button>
-        <button (click)='doGenerate()'>全部</button>
-        <button (click)='doResetCount()'>重設</button>
-    </div>
-</div>
-
-<div id='show-block' *ngIf="mode == 1" [@flyInOut]="'in'">
+<div id='show-block' *ngIf="mode == 1">
     <!--<div class='generatePad'>
         <button (click)='doGoBack()'>Back</button>
     </div>-->  
@@ -32,17 +18,4 @@
     
 </div>
 
-<div id='setup' *ngIf="mode == 2">
-    <div class="setup-core-block">
-        <h4>
-            <img class='menu' src="assets/menu.svg" height="32px" (click)='doSwitchMode()' />
-            分隊設定
-        </h4>
-        <ul>
-            <li>選擇分隊</li>
-            <li>模式：simple priority</li>
-            <li>結果顯示</li>
-        </ul>
-    </div>
-</div>
-
+<router-outlet></router-outlet>

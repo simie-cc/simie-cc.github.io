@@ -1,0 +1,12 @@
+<div *ngFor="let nameItem of storageService.nameList"
+        class='block' [ngClass]="{on: nameItem.join}"
+        (click)='doItemSwitch(nameItem)'>
+    {{ nameItem.name }}
+    <div class="memo-text">{{ nameItem.count }}</div>
+    </div>
+
+<div class='generatePad'>
+    <button (click)='doGenerate_once()'>單次</button>
+    <button (click)='doGenerate_all()'>全部</button>
+    <button (click)='doResetCount()'>重設</button>
+</div>

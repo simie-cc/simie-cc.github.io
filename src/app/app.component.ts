@@ -1,59 +1,54 @@
-import { Component, 
-      Input,
-      trigger,
-      state,
-      style,
-      transition,
-      animate } from '@angular/core';
+import {
+    Component,
+    Input,
+    trigger,
+    state,
+    style,
+    transition,
+    animate
+} from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+
 import { ArrayUtil, PersonRecord, MatchUp } from './shared';
+import { routeAnimation as routeAnimation } from './shared/route.animation';
+import { StorageService } from './storage.service';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'], 
-  animations: [
-    trigger('flyInOut', [
-        state('in', style({transform: 'translateX(0) scale(1)'})),
-            transition('void => *', [
-                style({transform: 'translateX(-100%) scale(1)'}), 
-                animate('100ms')
-            ]),
-            transition('* => void', [
-                animate(100, style({transform: 'translateX(0) scale(0)'}))
-            ])
-      ])
-]
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
     mode: PageMode = PageMode.SELECT;
     //mode: PageMode = PageMode.SETUP; // TODO debuging
-    nameList: Array<PersonRecord>;
     matchUps: Array<MatchUp> = [];
 
-    constructor() {
-        let saved_list = localStorage[STORAGE_KEY];
-        if (saved_list)
-        {
-            this.nameList = JSON.parse(saved_list);
-        }
-        else
-        {
-            let names = ['月月','丹丹','Mandy','大食怪','西西','琳琳','麥片','志樺','CCT','Wade','貝貝','唯佑'];
-            this.nameList = names.map((name) => new PersonRecord(name));
-            // for (let n of names)
-            //     this.nameList.push(new PersonRecord(n));
-        }
-    }
+    constructor(
+        private storageService: StorageService, 
+        private router: Router, 
+        private activatedRoute: ActivatedRoute
+        ) {}
 
     /** 切換顥示模式 */
     doSwitchMode() {
-        // 在 SELECT 和 RESULT 間切換
-        this.mode = (this.mode + 1) % 2;
+        this.router.navigate([
+            (this.router.url == '/select') ? '/result' : '/select']); 
     }
 
-    /** 切換 參加/不參加 */
-    doItemSwitch(item: PersonRecord) {
-        item.join = ! item.join;
+    /** 進入設定畫面 */
+    previousLink: string;
+    doEnterSetup($event: MouseEvent) {
+        $event.stopPropagation();
+        if(this.router.url == '/setup')
+        {
+            let preLink = this.previousLink || '/select';
+            this.router.navigate([preLink]);
+        }
+        else
+        {
+            this.previousLink = this.router.url;
+            this.router.navigate(['/setup']);
+        }
     }
 
     /** 產生結果 */
@@ -63,14 +58,13 @@ export class AppComponent {
         let sorted_list = this.randomizeArrayByFactor(unsort_list, 30, 10);
         this.debug_logList(sorted_list);
 
-        let joiner_list = sorted_list.slice(0, 4); 
-        joiner_list.forEach((value) => value.count ++);
+        let joiner_list = sorted_list.slice(0, 4);
+        joiner_list.forEach((value) => value.count++);
         this.matchUps.unshift(new MatchUp(
             joiner_list.map((value) => value.name)
         ));
 
-        localStorage[STORAGE_KEY] = JSON.stringify(this.nameList);
-
+        this.storageService.save();
         this.mode = PageMode.RESULT;
     }
 
@@ -80,9 +74,8 @@ export class AppComponent {
     }
 
     /** 重設參加次數 */
-    doResetCount()
-    {
-        this.nameList.forEach(value => value.count = 0);
+    doResetCount() {
+        this.storageService.nameList.forEach(value => value.count = 0);
     }
 
     doGoBack() {
@@ -93,30 +86,27 @@ export class AppComponent {
     private personlist(onOnly: boolean) {
         var personarray = [];
         if (onOnly)
-            return this.nameList.filter((value) => value.join);
+            return this.storageService.nameList.filter((value) => value.join);
         else
-            return this.nameList;
+            return this.storageService.nameList;
     }
 
     /** 將 PersonRecord 轉換為 name 的 Array，並用 console.log 輸出 */
-    private debug_logList(list: Array<PersonRecord>)
-    {
+    private debug_logList(list: Array<PersonRecord>) {
         console.log(
             list.map((value) => value.name)
         );
     }
 
     /** randomize the array */
-    private randomizeArray(arr_src: Array<PersonRecord>): Array<PersonRecord>
-    {
+    private randomizeArray(arr_src: Array<PersonRecord>): Array<PersonRecord> {
         const max_random = arr_src.length * 1000;
         var randomMap = {};
-        for (let item of arr_src)
-        {
+        for (let item of arr_src) {
             let index = 0;
             while (true) {
                 index = Math.floor(Math.random() * max_random);
-                if (! randomMap[index])
+                if (!randomMap[index])
                     break;
             }
 
@@ -127,30 +117,25 @@ export class AppComponent {
     }
 
     /** randomize the array / factoring mode */
-    private randomizeArrayByFactor(arr_src: Array<PersonRecord>, countFactor: number, baseFactor: number): Array<PersonRecord>
-    {
+    private randomizeArrayByFactor(arr_src: Array<PersonRecord>, countFactor: number, baseFactor: number): Array<PersonRecord> {
         //let max_count = Math.max.apply(null, arr_src.map((value) => value.count));
         //const max_random = arr_src.length * 1000;
         //var randomMap = {};
-        var randomList: Array<{person: PersonRecord, weight: number}> = [];
-        for (let item of arr_src)
-        {
+        var randomList: Array<{ person: PersonRecord, weight: number }> = [];
+        for (let item of arr_src) {
             let maxFactor = item.count * countFactor + baseFactor;
             let randomWeight: number = Math.floor(Math.random() * maxFactor);
-            
-            randomList.push({person: item, weight: randomWeight});
+
+            randomList.push({ person: item, weight: randomWeight });
         }
 
         console.log(randomList.map((value) => `${value.person.name}(${value.weight})`));
 
         return randomList
-                     .sort((a,b) => a.weight - b.weight)
-                     .map((value) => value.person);
+            .sort((a, b) => a.weight - b.weight)
+            .map((value) => value.person);
     }
 }
-
-/** 儲存在 local storage 中的鍵值名稱 */
-const STORAGE_KEY: string = "list";
 
 /** 顥示模式 */
 enum PageMode {
