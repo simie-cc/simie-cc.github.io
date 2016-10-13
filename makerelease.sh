@@ -1,6 +1,7 @@
 #!/bin/bash -e
 set -o verbose
 
+git status
 ng build --prod
 git checkout master
 rm -rf *.html *.js *.gz assets
@@ -9,3 +10,4 @@ cp index.html 404.html
 rm -rf dist
 git add .
 git commit
+git checkout angular-team
