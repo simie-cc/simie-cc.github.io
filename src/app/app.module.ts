@@ -10,13 +10,15 @@ import { SelectComponent } from './select/select.component';
 import { ResultComponent } from './result/result.component';
 import { SetupComponent } from './setup/setup.component';
 import { AppRoutes } from './app.route';
+import { DialogComponent } from './dialog/dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SelectComponent,
     ResultComponent,
-    SetupComponent
+    SetupComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,

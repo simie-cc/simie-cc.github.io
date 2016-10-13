@@ -40,6 +40,13 @@ h4 {
     position: relative;
 }
 
+h5 {
+    font-size: 0.5em;
+    display: inline-block;
+}
+
+* { box-sizing: border-box; }
+
 .menu {
     opacity: 0.5;
     position: absolute;
@@ -78,80 +85,19 @@ button:active {
     transform: scale(0.98);
 }
 
-.block {
-    font-size: 1em;
-    width: 23%;
-    border-radius: 5px;
-    box-sizing: border-box;
-    display: inline-block;
-    margin: 10px 1%;
-    padding: 1em 0;
-    box-sizing: border-box;
-    position: relative;
+// #person-block, #show-block {
+//     /* border: 1px solid black; */
+//     box-sizing: border-box;
+//     position: absolute;
+//     width: 100%;
+// }
 
-    /* off style */
-    border: 2px dashed #666;
-    background-color: none;
-}
-
-.block .memo-text {
-    position: absolute;
-    font-size: 0.6em;
-    bottom: 5%;
-    right: 5%;
-}
-
-.on {
-    /*color: blue;*/
-    border: 2px solid #329FFF;
-    background-color: #B2EAFF;
-}
-
-#person-block, #show-block {
-    /* border: 1px solid black; */
-    box-sizing: border-box;
-    position: absolute;
-    width: 100%;
-}
-
-.match-block {
-    position: relative;
-
-    > div {
-        display: inline-block;
-        position: absolute;
-        font-size: 2em;
-        @media(max-width: 400px) {
-            font-size: 1em;
-        }
-    }
-
-    > img {
-        opacity: 0.4;
-    }
-
-    > div.team1 { left: 10%; }
-    > div.team2 { left: 65%; }
-    > div.member1 { top: 25%; }
-    > div.member2 { top: 63%; padding-left: .5em; }
-}
-
-#setup {
-    background-color: #c0c0c0;
+.host {
     z-index: 0;
-
-    overflow: hidden;
-    position: absolute;
-    top: 0;
+    position: fixed;
+    top: calc(/* padding */ 1em + /* font height */ 1.6em + /* padding */ 1em + /* margin */ 0.5em);
+    bottom: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-}
-
-#setup .setup-core-block {
-    color: white;
-    background-color: #323232;
-    z-index: 1;
-    width: 100%;
-    max-width: 800px;
+    right: 0;
+    overflow: scroll;
 }

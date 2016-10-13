@@ -6,11 +6,10 @@ import { routeAnimation } from '../shared/route.animation';
     selector: 'app-setup',
     templateUrl: './setup.component.html',
     styleUrls: ['./setup.component.scss'],
+    host: {
+        'class': 'host','[@switchAnimation]': 'true'},
     animations: [routeAnimation('switchAnimation')]
 })
 export class SetupComponent {
-    @HostBinding('@switchAnimation')
-    public animatePage = true;
-
     constructor() { }
 }

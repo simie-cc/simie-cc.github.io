@@ -1,13 +1,15 @@
 
 import { Injectable } from '@angular/core';
 
-import { PersonRecord } from './shared/person.record';
+import { PersonRecord, MatchUp } from './shared';
 
 @Injectable()
 export class StorageService {
 
     /** 組隊清單 */
     nameList: Array<PersonRecord>;
+    /** 配對結果清單 */
+    matchUps: Array<MatchUp> = [];
 
     constructor() {
         let saved_list = localStorage[STORAGE_KEY_NAME_LIST];
@@ -18,13 +20,19 @@ export class StorageService {
             let names = ['月月', '丹丹', 'Mandy', '大食怪', '西西', '琳琳', '麥片', '志樺', 'CCT', 'Wade', '貝貝', '唯佑'];
             this.nameList = names.map((name) => new PersonRecord(name));
         }
+
+        let saved_match_list = localStorage[STORAGE_KEY_MATCH_LIST];
+        if (saved_match_list)
+            this.matchUps = JSON.parse(saved_match_list);
     }
 
-    /** 將組隊清單存回 local storage */ 
+    /** 將組隊清單存回 local storage */
     save() {
         localStorage[STORAGE_KEY_NAME_LIST] = JSON.stringify(this.nameList);
+        localStorage[STORAGE_KEY_MATCH_LIST] = JSON.stringify(this.matchUps);
     }
 }
 
 /** 儲存在 local storage 中的鍵值名稱 */
-const STORAGE_KEY_NAME_LIST: string = "namelist";
+const STORAGE_KEY_NAME_LIST = "namelist";
+const STORAGE_KEY_MATCH_LIST = "matchList";

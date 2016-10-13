@@ -5,11 +5,11 @@ export function routeAnimation(name) {
     return routeAnimation_3(name);
 }
 
-function startingStyles(styles: Object) { 
+function startingStyles(styles: Object) {
     return Object.assign(styles, {
-        position: 'fixed', 
-        left: '0', 
-        right: '0', 
+        position: 'fixed',
+        left: '0',
+        right: '0',
         height: '100%'
     });
 }
@@ -34,7 +34,7 @@ function routeAnimation_1(name) {
 function routeAnimation_2(name) {
     return trigger(name, [
         transition('void => *', [
-            style(startingStyles({ transform: 'translateX(100%)' })), 
+            style(startingStyles({ transform: 'translateX(100%)' })),
             animate('2s ease-out', style({transform: 'translateX(0%)'}))
         ]),
         transition('* => void', [
@@ -47,7 +47,7 @@ function routeAnimation_2(name) {
 function routeAnimation_3(name) {
     return trigger(name, [
         transition('void => *', [
-            style(startingStyles({ position: 'fixed', transform: 'scale(1.2)', opacity: 0.5 })), 
+            style(startingStyles({ transform: 'scale(1.2)', opacity: 0.5 })),
             animate('300ms ease-out', style({transform: 'scale(1)', opacity: 1 }))
         ]),
         transition('* => void', [
@@ -62,7 +62,7 @@ function routeAnimation_3(name) {
 /*
 state('in', style({transform: 'translateX(0) scale(1)'})),
     transition('void => *', [
-        style({transform: 'translateX(-100%) scale(1)'}), 
+        style({transform: 'translateX(-100%) scale(1)'}),
         animate('100ms')
     ]),
     transition('* => void', [

@@ -1,0 +1,28 @@
+.block {
+    font-size: 1em;
+    width: 23%;
+    border-radius: 5px;
+    box-sizing: border-box;
+    display: inline-block;
+    margin: 10px 1%;
+    padding: 1em 0;
+    box-sizing: border-box;
+    position: relative;
+
+    /* off style */
+    border: 2px dashed #666;
+    background-color: none;
+}
+
+.block .memo-text {
+    position: absolute;
+    font-size: 0.6em;
+    bottom: 5%;
+    right: 5%;
+}
+
+.on {
+    /*color: blue;*/
+    border: 2px solid #329FFF;
+    background-color: #B2EAFF;
+}

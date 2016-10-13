@@ -14,3 +14,14 @@ export const ComponentRoutes: Routes = [
 ];
 
 export const AppRoutes: ModuleWithProviders = RouterModule.forRoot(ComponentRoutes);
+
+export const DisplayNames: Map<string,string> = loadNameMapping();
+
+function loadNameMapping(): Map<string,string>
+{
+    let map = new Map<string,string>();
+    map.set('/select', '選擇');
+    map.set('/result', '結果');
+    map.set('/setup', '設定');
+    return map;
+}
