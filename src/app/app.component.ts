@@ -38,7 +38,9 @@ export class AppComponent {
     private previousLink: string;
 
     /** 切換顥示模式 */
-    doSwitchMode() {
+    doSwitchMode($event: MouseEvent) {
+        $event.preventDefault();
+
         if(this.router.url == '/setup')
         {
             let preLink = this.previousLink || '/select';

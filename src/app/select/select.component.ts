@@ -30,13 +30,16 @@ export class SelectComponent {
         let unsort_list = this.personlist(true);
 
         let sorted_list = this.randomizeArrayByFactor(unsort_list, 30, 10);
-        this.debug_logList(sorted_list);
+        //this.debug_logList(sorted_list);
 
         let joiner_list = sorted_list.length >= 4 ? sorted_list.slice(0, 4) : sorted_list;
+        let starter = Math.floor(Math.random() * joiner_list.length) + 1;
         joiner_list.forEach((value) => value.count++);
-        this.storage.matchUps.unshift(new MatchUp(
-            joiner_list.map((value) => value.name), true
-        ));
+        let matchup = new MatchUp(
+            joiner_list.map((value) => value.name), starter, true
+        );
+        this.storage.matchUps.unshift(matchup);
+        console.log(matchup);
 
         this.storage.save();
         this.router.navigate(['/result']);
@@ -47,7 +50,7 @@ export class SelectComponent {
         let unsort_list = this.personlist(true);
 
         let sorted_list = this.randomizeArrayByFactor(unsort_list, 30, 10);
-        this.debug_logList(sorted_list);
+        //this.debug_logList(sorted_list);
 
         let first = true;
         let results = new Array<MatchUp>();
@@ -56,9 +59,10 @@ export class SelectComponent {
             let joiner_list = sorted_list.length >= 4 ? sorted_list.slice(0, 4) : sorted_list;
             sorted_list = sorted_list.slice(4);
 
+            let starter = Math.floor(Math.random() * joiner_list.length) + 1;
             joiner_list.forEach((value) => value.count++);
             results.push(new MatchUp(
-                joiner_list.map((value) => value.name), first
+                joiner_list.map((value) => value.name), starter, first
             ));
             first = false;
         }

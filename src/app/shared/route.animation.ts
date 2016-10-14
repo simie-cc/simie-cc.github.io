@@ -2,7 +2,7 @@
 import { trigger, animate, style, transition } from '@angular/core';
 
 export function routeAnimation(name) {
-    return routeAnimation_3(name);
+    return routeAnimation_4(name);
 }
 
 function startingStyles(styles: Object) {
@@ -20,13 +20,13 @@ function routeAnimation_1(name) {
             style(startingStyles({
                 transform: 'translateX(100%)'
             })),
-            animate('0.5s ease-out', style({ transform: 'translateX(0%)'}))
+            animate('300ms ease-out', style({ transform: 'translateX(0%)'}))
         ]),
         transition('* => void', [
             style(startingStyles({
                 transform: 'translateX(0%)'
             })),
-            animate('0.5s ease-in', style({ transform: 'translateX(-100%)'}))
+            animate('200ms ease-in', style({ transform: 'translateX(-100%)'}))
         ])
     ]);
 }
@@ -57,6 +57,23 @@ function routeAnimation_3(name) {
     ]);
 }
 
+function routeAnimation_4(name) {
+    return trigger(name, [
+        transition('void => *', [
+            style(startingStyles({
+                transform: 'translateX(100%)'
+            })),
+            animate('300ms ease-out', style({ transform: 'translateX(0%)' }))
+        ]),
+        transition('* => void', [
+            style(startingStyles({
+                opacity: 1,
+                transform: 'scale(1)'
+            })),
+            animate('300ms ease-in', style({ opacity: 0, transform: 'scale(0.7)' }))
+        ])
+    ]);
+}
 
 
 /*
