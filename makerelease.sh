@@ -10,4 +10,5 @@ cp index.html 404.html
 rm -rf dist
 git add .
 git commit
+git push
 git checkout angular-team
