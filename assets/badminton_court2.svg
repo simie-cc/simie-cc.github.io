@@ -1,18 +1,108 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!-- Generator: Adobe Illustrator 12.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 51448)  -->
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [
-	<!ENTITY ns_svg "http://www.w3.org/2000/svg">
-	<!ENTITY ns_xlink "http://www.w3.org/1999/xlink">
-]>
-<svg  version="1.1" id="Layer_1" xmlns="&ns_svg;" xmlns:xlink="&ns_xlink;" width="567.258" height="296.291"
-	 viewBox="0 0 567.258 296.291" overflow="visible" enable-background="new 0 0 567.258 296.291" xml:space="preserve">
-<rect x="5" y="5" fill="none" stroke="#000000" stroke-width="10" width="557.258" height="286.291"/>
-<line fill="none" stroke="#000000" stroke-width="10" x1="48.548" y1="7.419" x2="48.548" y2="291.291"/>
-<line fill="none" stroke="#000000" stroke-width="10" x1="514.678" y1="3.742" x2="514.678" y2="287.613"/>
-<line fill="none" stroke="#000000" stroke-width="10" x1="341.645" y1="3.742" x2="341.645" y2="287.613"/>
-<line fill="none" stroke="#000000" stroke-width="10" x1="217.451" y1="3.742" x2="217.451" y2="287.613"/>
-<line fill="none" stroke="#000000" stroke-width="10" x1="3.387" y1="156.613" x2="219.516" y2="156.613"/>
-<line fill="none" stroke="#000000" stroke-width="10" x1="345.323" y1="156.613" x2="561.452" y2="156.613"/>
-<line fill="none" stroke="#000000" stroke-width="10" x1="2.58" y1="254.194" x2="557.419" y2="254.194"/>
-<line fill="none" stroke="#000000" stroke-width="10" x1="2.58" y1="40.484" x2="557.419" y2="40.484"/>
-</svg>
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   id="Layer_1"
+   width="567.258"
+   height="296.291"
+   viewBox="0 0 567.258 296.291"
+   overflow="visible"
+   enable-background="new 0 0 567.258 296.291"
+   xml:space="preserve"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="badminton_court2.svg"><metadata
+     id="metadata4211"><rdf:RDF><cc:Work
+         rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title></dc:title></cc:Work></rdf:RDF></metadata><defs
+     id="defs4209" /><sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1680"
+     inkscape:window-height="1001"
+     id="namedview4207"
+     showgrid="true"
+     inkscape:snap-grids="true"
+     inkscape:snap-to-guides="true"
+     inkscape:zoom="2.0942852"
+     inkscape:cx="262.60977"
+     inkscape:cy="111.65624"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="Layer_1"><inkscape:grid
+       type="xygrid"
+       id="grid4228" /></sodipodi:namedview><rect
+     x="5"
+     y="1.6575705"
+     width="554.87054"
+     height="289.63339"
+     id="rect4189"
+     style="fill:none;stroke:#000000;stroke-width:10" /><line
+     x1="40.548"
+     y1="3.599081"
+     x2="40.548"
+     y2="291.29099"
+     id="line4191"
+     style="fill:none;stroke:#000000;stroke-width:10" /><line
+     x1="522.67798"
+     y1="3.7420001"
+     x2="522.67798"
+     y2="287.61301"
+     id="line4193"
+     style="fill:none;stroke:#000000;stroke-width:10" /><line
+     x1="329.64499"
+     y1="3.7420001"
+     x2="329.64499"
+     y2="287.61301"
+     id="line4195"
+     style="fill:none;stroke:#000000;stroke-width:10" /><line
+     x1="231.451"
+     y1="3.7420001"
+     x2="231.451"
+     y2="287.61301"
+     id="line4197"
+     style="fill:none;stroke:#000000;stroke-width:10" /><line
+     x1="3.3870001"
+     y1="156.61301"
+     x2="232.34618"
+     y2="156.61301"
+     id="line4199"
+     style="fill:none;stroke:#000000;stroke-width:10" /><line
+     x1="328.44119"
+     y1="156.61301"
+     x2="561.45203"
+     y2="156.61301"
+     id="line4201"
+     style="fill:none;stroke:#000000;stroke-width:10" /><line
+     x1="2.5799999"
+     y1="262.194"
+     x2="557.41901"
+     y2="262.194"
+     id="line4203"
+     style="fill:none;stroke:#000000;stroke-width:10" /><line
+     x1="2.5799999"
+     y1="32.484001"
+     x2="557.41901"
+     y2="32.484001"
+     id="line4205"
+     style="fill:none;stroke:#000000;stroke-width:10" /><line
+     x1="281.27509"
+     y1="0.62502778"
+     x2="281.27509"
+     y2="295.4783"
+     id="line4197-6"
+     style="fill:none;stroke:#000000;stroke-width:10.00000095;stroke-miterlimit:4;stroke-dasharray:30.00000111, 10.00000037;stroke-dashoffset:0" /></svg>
