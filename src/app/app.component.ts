@@ -20,6 +20,8 @@ import { DisplayNames } from './app.route';
     styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
+    version = '0.17.20161102';
+
     constructor(
         private storage: StorageService,
         private router: Router

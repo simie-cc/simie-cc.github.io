@@ -45,7 +45,6 @@ export class ResultComponent {
         });
 
         this.storage.save();
-        this.router.navigate(['/select']);
     }
 
     /** 記錄被選擇到的刪除項目 */
@@ -78,8 +77,21 @@ export class ResultComponent {
 
         this.startpos.targetElm.style.transform = '';
         if (this.startpos.targetItem.readyToDelete)
+        {
             this.removeMe(this.startpos.targetItem);
+            this.goback();
+        }
 
         this.startpos = null;
+    }
+
+    /** 移除配對 */
+    removeMatch(item: MatchUp) {
+        this.removeMe(item);
+    }
+
+    /** 返回 [選擇頁] */
+    goback() {
+        this.router.navigate(['/select']);
     }
 }
