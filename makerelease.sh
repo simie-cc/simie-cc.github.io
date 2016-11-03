@@ -1,4 +1,7 @@
 #!/bin/bash -e
+#
+#  make release script
+#
 set -o verbose
 
 git status
