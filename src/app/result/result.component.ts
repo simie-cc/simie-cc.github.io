@@ -13,7 +13,8 @@ import { MatchUp } from '../shared';
     host: {
         'class': 'host','[@switchAnimation]': 'true',
         '(document:mouseup)': 'onMouseup()',
-        '(document:mousemove)': 'onMousemove($event)'
+        '(document:mousemove)': 'onMousemove($event)',
+        '(document:click)': 'removeMatch($event, null)'
     },
     animations: [routeAnimation('switchAnimation')]
 })
@@ -86,8 +87,18 @@ export class ResultComponent {
     }
 
     /** 移除配對 */
-    removeMatch(item: MatchUp) {
-        this.removeMe(item);
+    readyToRemoveItem: MatchUp = null;
+    removeMatch($event: MouseEvent, item: MatchUp) {
+        $event.stopPropagation();
+
+        if (item == null)
+            this.readyToRemoveItem = null;
+        else if (this.readyToRemoveItem == null || this.readyToRemoveItem != item)
+            this.readyToRemoveItem = item;
+        else
+            this.removeMe(this.readyToRemoveItem);
+
+        //console.log('clicked ' + item);
     }
 
     /** 返回 [選擇頁] */

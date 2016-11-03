@@ -2,7 +2,7 @@
     (dblclick)='removeMe(item)'
     (mousedown)='onMousedown($event, item)'>
     <hr *ngIf="item.first" />
-    <div class='match-base' (click)='removeMatch(item)'>
+    <div class='match-base' (click)='removeMatch($event,item)'>
         <img src='assets/badminton_court2.svg' width="100%" />
         <div class="team1 member1"><img *ngIf="item.starter == 1" src="assets/badminton.svg" />{{ item.joiners[0] }}</div>
         <div class="team1 member2"><img *ngIf="item.starter == 2" src="assets/badminton.svg" />{{ item.joiners[1] }}</div>
@@ -11,4 +11,7 @@
     </div>
     <img *ngIf="item.readyToDelete"
          class='delete-icon' src="assets/delete.svg" width="100%" height="100%"/>
+    <img *ngIf="item == readyToRemoveItem"
+         class='delete-icon' src="assets/delete.svg" width="100%" height="100%"
+         (click)='removeMatch($event,item)' />
 </div>
