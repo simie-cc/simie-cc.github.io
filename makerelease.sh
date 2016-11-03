@@ -10,6 +10,6 @@ cp -R dist/* .
 cp index.html 404.html
 rm -rf dist
 git add .
-git commit
+git commit -m "release `date '+%Y%m%d%H%M%S'`"
 git push
 git checkout angular-team
