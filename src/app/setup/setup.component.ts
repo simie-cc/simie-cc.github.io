@@ -12,4 +12,6 @@ import { routeAnimation } from '../shared/route.animation';
 })
 export class SetupComponent {
     constructor() { }
+
+    editing = true;
 }

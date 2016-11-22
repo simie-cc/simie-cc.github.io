@@ -17,7 +17,7 @@ export class StorageService {
             this.nameList = JSON.parse(saved_list);
         }
         else {
-            let names = ['月月', '丹丹', 'Mandy', '大食怪', '西西', '琳琳', '麥片', '志樺', 'CCT', 'Wade', '貝貝', '唯佑'];
+            let names = ['月月', '丹丹', 'Mandy', '大食怪', '西西', '琳琳', '麥片', '志樺', '惠玉', 'CCT', 'Wade'];
             this.nameList = names.map((name) => new PersonRecord(name));
         }
 
