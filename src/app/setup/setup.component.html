@@ -3,7 +3,7 @@
         分隊設定
     </h4>
     <ul>
-        <li>編輯人員</li>
+        <li (click)='editPersons()'>編輯人員</li>
         <li>選擇分隊</li>
         <li>模式：simple priority</li>
         <li>結果顯示</li>
@@ -11,8 +11,10 @@
 </div>
 
 <div class='fullscreen-edit' *ngIf="editing">
-    <textarea id="" rows="10">test1234</textarea>
+    <textarea id="" rows="15"
+        [(ngModel)]="edit_value"
+    ></textarea>
 
-    <button>確定</button>
-    <button>取消</button>
+    <button (click)='editPersons_done()'>確定</button>
+    <button class='button-cancel' (click)='exitEditing()'>取消</button>
 </div>

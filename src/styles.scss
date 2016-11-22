@@ -75,6 +75,10 @@ button {
     padding: 10px;
 }
 
+button.button-cancel {
+    background-color: #13d147;
+}
+
 @media(max-width: 400px) {
     button {
         margin: 0 2px;
