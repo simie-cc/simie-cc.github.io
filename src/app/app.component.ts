@@ -25,7 +25,11 @@ export class AppComponent {
     constructor(
         private storage: StorageService,
         private router: Router
-        ) {}
+    ) { }
+
+    get url() {
+        return this.router.url;
+    }
 
     /** 取得標題顯示名稱 */
     get urlname() {
@@ -43,13 +47,11 @@ export class AppComponent {
     doSwitchMode($event: MouseEvent) {
         $event.preventDefault();
 
-        if(this.router.url == '/setup')
-        {
+        if (this.router.url == '/setup') {
             let preLink = this.previousLink || '/select';
             this.router.navigate([preLink]);
         }
-        else
-        {
+        else {
             this.router.navigate([
                 (this.router.url == '/select') ? '/result' : '/select']);
         }
@@ -58,13 +60,11 @@ export class AppComponent {
     /** 進入設定畫面 */
     doEnterSetup($event: MouseEvent) {
         $event.stopPropagation();
-        if(this.router.url == '/setup')
-        {
+        if (this.router.url == '/setup') {
             let preLink = this.previousLink || '/select';
             this.router.navigate([preLink]);
         }
-        else
-        {
+        else {
             this.previousLink = this.router.url;
             this.router.navigate(['/setup']);
         }

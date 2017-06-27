@@ -4,15 +4,15 @@ import { Router } from '@angular/router';
 
 import { PersonRecord, MatchUp } from '../shared';
 import { StorageService } from '../storage.service';
-import { routeAnimation } from '../shared/route.animation';
+import { no_animation } from '../shared/route.animation';
 
 @Component({
     selector: 'app-select',
     templateUrl: './select.component.html',
     styleUrls: ['./select.component.scss'],
-    host: {
-        'class': 'host', '[@switchAnimation]': 'true'},
-    animations: [routeAnimation('switchAnimation')]
+        host: {
+        'class': 'host base','[@switchAnimation]': 'true'},
+    animations: [no_animation('switchAnimation')]
 })
 export class SelectComponent {
     constructor(

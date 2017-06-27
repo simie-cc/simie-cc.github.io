@@ -2,6 +2,9 @@
 // Reset CSS
 @import '~reset-css/reset.css';
 
+// font-awesome
+@import '~font-awesome/css/font-awesome.min.css';
+
 // Noto Sans font TC
 @import url(https://fonts.googleapis.com/earlyaccess/notosanstc.css);
 
@@ -97,6 +100,7 @@ button:active {
 // }
 
 .host {
+    background: white;
     z-index: 0;
     position: fixed;
     top: calc(/* padding */ 1em + /* font height */ 1.6em + /* padding */ 1em + /* margin */ 0.5em);
@@ -104,4 +108,6 @@ button:active {
     left: 0;
     right: 0;
     overflow: scroll;
+
+    &.base { z-index: -5; }
 }

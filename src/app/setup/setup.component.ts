@@ -1,7 +1,7 @@
 
 import { Component, HostBinding } from '@angular/core';
 import { PersonRecord } from '../shared/person.record';
-import { routeAnimation } from '../shared/route.animation';
+import { routeAnimation, routeAnimation_left } from '../shared/route.animation';
 
 import { StorageService } from '../storage.service';
 
@@ -11,7 +11,7 @@ import { StorageService } from '../storage.service';
     styleUrls: ['./setup.component.scss'],
     host: {
         'class': 'host','[@switchAnimation]': 'true'},
-    animations: [routeAnimation('switchAnimation')]
+    animations: [routeAnimation_left('switchAnimation')]
 })
 export class SetupComponent {
     constructor(

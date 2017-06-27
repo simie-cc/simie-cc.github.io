@@ -2,7 +2,7 @@
 import { Component, HostBinding } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { routeAnimation } from '../shared/route.animation';
+import { routeAnimation_right } from '../shared/route.animation';
 import { StorageService } from '../storage.service';
 import { MatchUp } from '../shared';
 
@@ -16,12 +16,9 @@ import { MatchUp } from '../shared';
         '(document:mousemove)': 'onMousemove($event)',
         '(document:click)': 'removeMatch($event, null)'
     },
-    animations: [routeAnimation('switchAnimation')]
+    animations: [routeAnimation_right('switchAnimation')]
 })
 export class ResultComponent {
-    @HostBinding('@switchAnimation')
-    public animatePage = true;
-
     constructor(
         private storage: StorageService,
         private router: Router) { }

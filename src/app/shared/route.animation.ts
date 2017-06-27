@@ -75,6 +75,42 @@ function routeAnimation_4(name) {
     ]);
 }
 
+export function routeAnimation_right(name) {
+    return trigger(name, [
+        transition('void => *', [
+            style(startingStyles({
+                transform: 'translateX(100%)'
+            })),
+            animate('300ms ease-out', style({ transform: 'translateX(0%)' }))
+        ]),
+        transition('* => void', [
+            animate('300ms ease-out', style({ transform: 'translateX(100%)' }))
+        ])
+    ]);
+}
+
+export function routeAnimation_left(name) {
+    return trigger(name, [
+        transition('void => *', [
+            style(startingStyles({
+                transform: 'translateX(-100%)'
+            })),
+            animate('300ms ease-out', style({ transform: 'translateX(0%)' }))
+        ]),
+        transition('* => void', [
+            animate('300ms ease-out', style({ transform: 'translateX(-100%)' }))
+        ])
+    ]);
+}
+
+export function no_animation(name) {
+    return trigger(name, [
+        transition('void => *, * => void', [
+            animate('500ms ease-out')
+        ])
+    ]);
+}
+
 
 /*
 state('in', style({transform: 'translateX(0) scale(1)'})),

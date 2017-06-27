@@ -14,13 +14,17 @@
 .setup-core-block {
     z-index: 1;
     width: 100%;
-    max-width: 800px;
+    max-width: 240px;
+    text-align: left;
 
     ul {
-        li:before { content: '* '; }
         li { 
+            list-style-type: none;
             width: 100%;
-            min-height: 2em;
+            line-height: 2em;
+            margin: 5px 10px;
+
+            .fa { color: #1d88c6; margin-right: 5px; }
         }
     }
 }

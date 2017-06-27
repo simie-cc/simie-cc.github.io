@@ -1,7 +1,7 @@
 
 <h3 (click)='doSwitchMode($event)'>分隊
     <h5>{{ urlname }}</h5>
-    <img class='menu' src="assets/menu.svg" height="32px" (click)='doEnterSetup($event)' />
+    <i class="menu fa" [ngClass]="{'fa-gear': url !== '/setup', 'fa-chevron-left': url === '/setup'}" aria-hidden="true" (click)='doEnterSetup($event)'></i>
     <div class="sub">Ver. {{ version }}</div></h3>
 
 <router-outlet></router-outlet>
