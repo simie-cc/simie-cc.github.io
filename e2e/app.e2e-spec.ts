@@ -1,14 +1,14 @@
-import { SimieCcPage } from './app.po';
+import { CliLatestPage } from './app.po';
 
-describe('simie-cc App', function() {
-  let page: SimieCcPage;
+describe('cli-latest App', () => {
+  let page: CliLatestPage;
 
   beforeEach(() => {
-    page = new SimieCcPage();
+    page = new CliLatestPage();
   });
 
-  it('should display message saying app works', () => {
+  it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('app works!');
+    expect(page.getParagraphText()).toEqual('Welcome to app!!');
   });
 });
