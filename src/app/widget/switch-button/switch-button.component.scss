@@ -1,0 +1,44 @@
+.switch-button {
+    font-size: .8rem;
+  font-family: sans-serif;
+  font-weight: bold;
+
+  display: inline-block;
+  border: 2px solid black;
+  width: 5em;
+  height: 2em;
+  border-radius: 1em;
+  line-height: 2em;
+
+  position: relative;
+  text-align: center;
+}
+
+.switch-button.on {
+  background-color: #a2b867;
+}
+.switch-button.off {
+  background-color: #b8677a;
+}
+
+.switch-button > .switch-button-ind {
+  display: inline-block;
+  width: 1em;
+  height: 1.5em;
+  border: 2px solid black;
+  border-radius: .6em;
+  background-color: black;
+
+  position: absolute;
+  top: 0.15em;
+}
+
+
+.switch-button .switch-button-text { display: inline-block; }
+
+.switch-button.on > .switch-button-text::before {
+  content: 'ON';
+}
+.switch-button.off > .switch-button-text::before {
+  content: 'OFF';
+}

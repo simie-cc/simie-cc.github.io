@@ -1,0 +1,13 @@
+<div>
+Widget:
+    <app-switch-button [(ngModel)]="value"></app-switch-button>
+</div>
+
+<div>
+    <ul>
+        <li>Current value: {{ value }}</li>
+        <li>Set value:
+            <button (click)='value=false'>false</button><button (click)='value=true'>true</button>
+        </li>
+    </ul>
+</div>

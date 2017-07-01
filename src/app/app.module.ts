@@ -11,6 +11,8 @@ import { ResultComponent } from './result/result.component';
 import { SetupComponent } from './setup/setup.component';
 import { AppRoutes } from './app.route';
 import { DialogComponent } from './dialog/dialog.component';
+import { SwitchButtonComponent } from './widget/switch-button/switch-button.component';
+import { WidgetTesterComponent } from './widget/widget-tester/widget-tester.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { DialogComponent } from './dialog/dialog.component';
     SelectComponent,
     ResultComponent,
     SetupComponent,
-    DialogComponent
+    DialogComponent,
+    SwitchButtonComponent,
+    WidgetTesterComponent
   ],
   imports: [
     BrowserModule,
