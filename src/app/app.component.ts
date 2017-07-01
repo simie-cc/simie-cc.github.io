@@ -13,6 +13,7 @@ import { ArrayUtil, PersonRecord, MatchUp } from './shared';
 import { routeAnimation as routeAnimation } from './shared/route.animation';
 import { StorageService } from './storage.service';
 import { DisplayNames } from './app.route';
+import * as V from '../environments/version';
 
 @Component({
     selector: 'app-root',
@@ -20,7 +21,7 @@ import { DisplayNames } from './app.route';
     styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-    version = '0.18-20161103';
+    version = V.Version + '.' + V.LastModified;
 
     constructor(
         private storage: StorageService,

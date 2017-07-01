@@ -15,7 +15,7 @@ import { StorageService } from '../storage.service';
 })
 export class SetupComponent {
     constructor(
-        private storageService: StorageService
+        public storageService: StorageService
     ) { }
 
     /** 是否在編輯模式 */
@@ -43,10 +43,10 @@ export class SetupComponent {
         }
 
         let nameList = this.storageService.nameList;
-        let origNames = new Set(nameList.map((val) => val.name)), 
+        let origNames = new Set(nameList.map((val) => val.name)),
             newNames = new Set(new_list);
-            
-        var addNames = new Set(Array.from(newNames).filter(x => ! origNames.has(x))), 
+
+        var addNames = new Set(Array.from(newNames).filter(x => ! origNames.has(x))),
             removeNames = new Set(Array.from(origNames).filter(x => ! newNames.has(x)));
 
         console.log(`addNames: ${addNames}`);

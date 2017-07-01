@@ -10,15 +10,20 @@ const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
     useExisting: forwardRef(() => SwitchButtonComponent),
     multi: true
 };
-const noop = () => {};
+const noop = () => { };
 
 @Component({
     selector: 'app-switch-button',
     templateUrl: './switch-button.component.html',
     styleUrls: ['./switch-button.component.scss'],
     animations: [
+        trigger('hostAnimation', [
+            state('on', style({ 'background-color': '#a2b867' })),
+            state('off', style({ 'background-color': '#b8677a' })),
+            transition('* => *', animate('300ms ease-in'))
+        ]),
         trigger('animation', [
-            state('on', style({ left: '3.3em' })),
+            state('on', style({ left: '2.8em' })),
             state('off', style({ left: '.3em' })),
             transition('* => *', animate('300ms ease-in'))
         ])

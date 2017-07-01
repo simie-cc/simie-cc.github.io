@@ -38,6 +38,8 @@ export class SelectComponent {
         let matchup = new MatchUp(
             joiner_list.map((value) => value.name), starter, true
         );
+
+        this.checkRemain();
         this.storage.matchUps.unshift(matchup);
         console.log(matchup);
 
@@ -67,9 +69,16 @@ export class SelectComponent {
             first = false;
         }
 
+        this.checkRemain();
         results.reverse().forEach((value) => this.storage.matchUps.unshift(value));
         this.storage.save();
         this.router.navigate(['/result']);
+    }
+
+    private checkRemain() {
+        if (this.storage.remainLatest) {
+            this.storage.matchUps = [];
+        }
     }
 
     /** 重設參加次數 */

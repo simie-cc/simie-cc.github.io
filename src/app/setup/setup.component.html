@@ -1,9 +1,13 @@
 <div class="setup-core-block">
     <ul>
         <li><a (click)='editPersons()'><i class="fa fa-users" aria-hidden="true"></i> 編輯人員</a></li>
+         <li>
+            <i class="fa fa-cut" aria-hidden="true"></i> 只顯示最新結果
+            <app-switch-button [(ngModel)]="storageService.remainLatest"
+                (valueChanges)="storageService.save()"></app-switch-button>
+        </li>
         <li>選擇分隊</li>
         <li>模式：simple priority</li>
-        <li><i class="fa fa-cut" aria-hidden="true"></i> 結果顯示</li>
     </ul>
 </div>
 

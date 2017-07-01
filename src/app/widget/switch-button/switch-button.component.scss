@@ -1,44 +1,38 @@
 .switch-button {
-    font-size: .8rem;
+
   font-family: sans-serif;
   font-weight: bold;
 
   display: inline-block;
   border: 2px solid black;
-  width: 5em;
-  height: 2em;
+  width: 4.5em;
+  height: 1.8em;
   border-radius: 1em;
-  line-height: 2em;
+  line-height: 1.8em;
 
   position: relative;
   text-align: center;
 }
 
 .switch-button.on {
-  background-color: #a2b867;
+//   background-color: #a2b867;
+  text-align: left;
+  padding-left: 0.7em;
 }
 .switch-button.off {
-  background-color: #b8677a;
+//   background-color: #b8677a;
+  text-align: right;
+  padding-right: 0.7em;
 }
 
 .switch-button > .switch-button-ind {
   display: inline-block;
-  width: 1em;
-  height: 1.5em;
+  width: 1.2em;
+  height: 1.2em;
   border: 2px solid black;
-  border-radius: .6em;
+  border-radius: .5em;
   background-color: black;
 
   position: absolute;
-  top: 0.15em;
-}
-
-
-.switch-button .switch-button-text { display: inline-block; }
-
-.switch-button.on > .switch-button-text::before {
-  content: 'ON';
-}
-.switch-button.off > .switch-button-text::before {
-  content: 'OFF';
+  top: 0.2em;
 }

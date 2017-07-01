@@ -1,4 +1,4 @@
-<a class="switch-button" [ngClass]="{'on': value, 'off': ! value}" >
-  <span class="switch-button-text"></span>
+<a class="switch-button" [ngClass]="{'on': value, 'off': ! value}" [@hostAnimation]='valuestring'>
+  {{ value ? 'ON' : 'OFF' }}
   <span class="switch-button-ind" [@animation]='valuestring'></span>
 </a>
