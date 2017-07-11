@@ -78,9 +78,7 @@ function routeAnimation_4(name) {
 export function routeAnimation_right(name) {
     return trigger(name, [
         transition('void => *', [
-            style(startingStyles({
-                transform: 'translateX(100%)'
-            })),
+            style({ transform: 'translateX(100%)' }),
             animate('300ms ease-out', style({ transform: 'translateX(0%)' }))
         ]),
         transition('* => void', [

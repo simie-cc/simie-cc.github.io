@@ -1,4 +1,4 @@
-<div class="match-block" *ngFor="let item of storage.matchUps"
+<div class="match-block" *ngFor="let item of matchUps"
     (dblclick)='removeMe(item)'
     (mousedown)='onMousedown($event, item)'>
     <hr *ngIf="item.first" />

@@ -20,6 +20,8 @@ export class SelectComponent {
         private router: Router
         ) { }
 
+    get nameList() { return this.storage.nameList; }
+
     /** 切換 參加/不參加 */
     doItemSwitch(event: MouseEvent, item: PersonRecord) {
         event.preventDefault();

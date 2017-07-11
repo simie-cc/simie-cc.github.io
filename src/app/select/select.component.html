@@ -1,4 +1,4 @@
-<div *ngFor="let nameItem of storage.nameList"
+<div *ngFor="let nameItem of nameList"
         class='block' [ngClass]="{on: nameItem.join}"
         (click)='doItemSwitch($event, nameItem)'>
     {{ nameItem.name }}

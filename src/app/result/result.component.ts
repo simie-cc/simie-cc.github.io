@@ -23,6 +23,8 @@ export class ResultComponent {
         private storage: StorageService,
         private router: Router) { }
 
+    get matchUps() { return this.storage.matchUps; }
+
     /** 移除指定的場次 */
     removeMe(selectedMatch: MatchUp) {
         let itemIndex = this.storage.matchUps.indexOf(selectedMatch);
