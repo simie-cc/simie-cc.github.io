@@ -6,7 +6,7 @@
             <app-switch-button [(ngModel)]="storageService.remainLatest"
                 (valueChanges)="storageService.save()"></app-switch-button>
         </li>
-        <li>選擇分隊</li>
+        <li><a (click)='cleanMatchUps()'><i class="fa fa-close"></i> 清除分隊結果</a></li>
         <li>模式：simple priority</li>
     </ul>
 </div>

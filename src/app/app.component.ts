@@ -5,7 +5,8 @@ import {
     state,
     style,
     transition,
-    animate
+    animate,
+    ElementRef
 } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -19,13 +20,21 @@ import * as V from '../environments/version';
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
+    animations: [
+        trigger('heading', [
+            state('heading', style({ 'font-size': '1.3rem', 'padding-top': '1.35rem' })),
+            state('subline', style({ 'font-size': '0.6em', 'padding-top': '0.3rem' })),
+            transition('* => *', animate('300ms ease-in'))
+        ])
+    ]
 })
 export class AppComponent {
     version = V.Version + '.' + V.LastModified;
 
     constructor(
         private storage: StorageService,
-        private router: Router
+        private router: Router,
+        private elm: ElementRef
     ) { }
 
     get url() {
@@ -36,38 +45,46 @@ export class AppComponent {
     get urlname() {
         let url = this.router.url;
         if (DisplayNames.get(url))
-            return '- ' + DisplayNames.get(url);
+            return DisplayNames.get(url);
         else
-            return url;
+            return "";
     }
 
-    /** 前一個顯示畫面 */
-    private previousLink: string;
-
-    /** 切換顥示模式 */
-    doSwitchMode($event: MouseEvent) {
-        $event.preventDefault();
-
-        if (this.router.url == '/setup') {
-            let preLink = this.previousLink || '/select';
-            this.router.navigate([preLink]);
-        }
-        else {
-            this.router.navigate([
-                (this.router.url == '/select') ? '/result' : '/select']);
-        }
+    get urlname_state() {
+        return this.urlname ? "subline" : "heading";
     }
+
+    // /** 切換顥示模式 */
+    // doSwitchMode($event: MouseEvent) {
+    //     $event.preventDefault();
+
+    //     if (this.router.url == '/setup') {
+    //         let preLink = this.previousLink || '/select';
+    //         this.router.navigate([preLink]);
+    //     }
+    //     else {
+    //         this.router.navigate([
+    //             (this.router.url == '/select') ? '/result' : '/select']);
+    //     }
+    // }
 
     /** 進入設定畫面 */
-    doEnterSetup($event: MouseEvent) {
-        $event.stopPropagation();
-        if (this.router.url == '/setup') {
-            let preLink = this.previousLink || '/select';
-            this.router.navigate([preLink]);
-        }
-        else {
-            this.previousLink = this.router.url;
+    doEnterSetup(event: MouseEvent) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        if (this.router.url === '/select') {
             this.router.navigate(['/setup']);
+        } else {
+            this.router.navigate(['/select']);
         }
+    }
+
+    enterResult(event: MouseEvent) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        console.log('show!');
+        this.router.navigate(['/result']);
     }
 }

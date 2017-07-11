@@ -1,6 +1,6 @@
 <div *ngFor="let nameItem of storage.nameList"
         class='block' [ngClass]="{on: nameItem.join}"
-        (click)='doItemSwitch(nameItem)'>
+        (click)='doItemSwitch($event, nameItem)'>
     {{ nameItem.name }}
     <div class="memo-text">{{ nameItem.count }}</div>
     </div>
@@ -9,4 +9,5 @@
     <button (click)='doGenerate_once()'>單次</button>
     <button (click)='doGenerate_all()'>全部</button>
     <button (click)='doResetCount()'>重設</button>
+    <button (click)='goResultPage()'>顯示結果</button>
 </div>

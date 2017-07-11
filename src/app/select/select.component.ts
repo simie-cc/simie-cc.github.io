@@ -21,7 +21,10 @@ export class SelectComponent {
         ) { }
 
     /** 切換 參加/不參加 */
-    doItemSwitch(item: PersonRecord) {
+    doItemSwitch(event: MouseEvent, item: PersonRecord) {
+        event.preventDefault();
+        event.stopPropagation();
+
         item.join = !item.join;
     }
 
@@ -138,5 +141,9 @@ export class SelectComponent {
         return randomList
             .sort((a, b) => a.weight - b.weight)
             .map((value) => value.person);
+    }
+
+    goResultPage() {
+        this.router.navigate(['/result']);
     }
 }

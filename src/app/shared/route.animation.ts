@@ -92,9 +92,7 @@ export function routeAnimation_right(name) {
 export function routeAnimation_left(name) {
     return trigger(name, [
         transition('void => *', [
-            style(startingStyles({
-                transform: 'translateX(-100%)'
-            })),
+            style({ transform: 'translateX(-100%)' }),
             animate('300ms ease-out', style({ transform: 'translateX(0%)' }))
         ]),
         transition('* => void', [
@@ -105,8 +103,8 @@ export function routeAnimation_left(name) {
 
 export function no_animation(name) {
     return trigger(name, [
-        transition('void => *, * => void', [
-            animate('500ms ease-out')
+        transition('void => *,* => void', [
+            animate('500ms ease-out', style({}))
         ])
     ]);
 }

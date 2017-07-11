@@ -8,6 +8,8 @@
 // Noto Sans font TC
 @import url(https://fonts.googleapis.com/earlyaccess/notosanstc.css);
 
+* { box-sizing: border-box; }
+
 html {
     font-family: 'Noto Sans TC', sans-serif;
     font-size: 140%;
@@ -17,19 +19,21 @@ body {
     text-align: center;
 }
 
+.header {
+    background-color: #c4ffb2;/*#9BF1FF*/
+    position: relative;
+    line-height: 4rem;
+    height: 4rem;
+}
+
 h3,h4 {
     vertical-align: middle;
 }
 
-h3 {
-    font-size: 1.3em;
-    padding: 1em 0;
-    background-color: #c4ffb2;/*#9BF1FF*/
-    position: relative;
-}
 
-h3 .sub {
-    font-size: 0.4em;
+.sub {
+    font-size: 0.6rem;
+    line-height: 0.6rem;
     color: #505050;
     display: inline-block;
     position: absolute;
@@ -37,10 +41,23 @@ h3 .sub {
     right: 5px;
 }
 
+h3 {
+    font-size: 1.3rem;
+    line-height: 1.3rem;
+}
+
+.header > h3 {
+    font-size: 1.3rem;
+    padding-top: 1.35rem;
+    &.subline {
+        font-size: 0.6rem;
+        padding-top: 0.6rem;
+    }
+}
+
 h4 {
-    font-size: 1.1em;
-    padding: 1em 0;
-    position: relative;
+    font-size: 1.3rem;
+    line-height: 1.3rem;
 }
 
 h5 {
@@ -48,14 +65,14 @@ h5 {
     display: inline-block;
 }
 
-* { box-sizing: border-box; }
 
 .menu {
+    line-height: 4rem;
+    font-size: 1.2rem;
     opacity: 0.5;
     position: absolute;
-    top: calc(50% - 16px);
+    top: 0;
     left: 10px;
-    vertical-align: middle;
 }
 
 button {
@@ -65,7 +82,7 @@ button {
     border: none;
     border-radius: .1em;
     display: inline-block;
-    margin: 0 5px;
+    margin: 5px;
     padding: .4em .4em;
 
     box-shadow: .05em .05em .05em #888888;
@@ -84,7 +101,7 @@ button.button-cancel {
 
 @media(max-width: 400px) {
     button {
-        margin: 0 2px;
+        margin: 2px;
     }
 }
 

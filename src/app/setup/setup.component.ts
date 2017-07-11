@@ -72,4 +72,8 @@ export class SetupComponent {
     {
         this.editing = false;
     }
+
+    cleanMatchUps() {
+        this.storageService.matchUps = [];
+    }
 }

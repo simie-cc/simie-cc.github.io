@@ -1,7 +1,12 @@
 
-<h3 (click)='doSwitchMode($event)'>分隊
-    <h5>{{ urlname }}</h5>
-    <i class="menu fa" [ngClass]="{'fa-gear': url !== '/setup', 'fa-chevron-left': url === '/setup'}" aria-hidden="true" (click)='doEnterSetup($event)'></i>
-    <div class="sub">Ver. {{ version }}</div></h3>
+<div class='header'>
+    <h3 [ngClass]="{'subline': urlname_state === 'subline'}" [@heading]='urlname_state'>分隊
+        <br>
+        <h4>{{ urlname }}</h4>
+    </h3>
+    <i class="menu fa" [ngClass]="{'fa-gear': url === '/select', 'fa-chevron-left': url !== '/select'}"
+        aria-hidden="true" (click)='doEnterSetup($event)'></i>
+    <div class="sub">Ver. {{ version }}</div>
+</div>
 
 <router-outlet></router-outlet>
