@@ -15,4 +15,4 @@ rm -rf dist
 git add .
 git commit -m "release `date '+%Y%m%d%H%M%S'`"
 git push
-git checkout angular-team
+git checkout develop
