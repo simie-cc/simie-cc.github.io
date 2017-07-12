@@ -1,3 +1,2 @@
-
-export const Version = '0.20';
-export const LastModified = '201707xx';
+export const Version = '0.21';
+export const LastModified = '20170712';
