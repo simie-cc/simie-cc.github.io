@@ -1,12 +1,16 @@
 
+<app-setup></app-setup>
+
+<app-overlay *ngIf="setupPanelState === 'shown'" (overlayClicked)='doLeaveSetup()'></app-overlay>
+<div class="content" [@contentAnimation]='setupPanelState'>
 <div class='header'>
     <h3 [ngClass]="{'subline': urlname_state === 'subline'}" [@heading]='urlname_state'>分隊
         <br>
         <h4>{{ urlname }}</h4>
     </h3>
-    <i class="menu fa" [ngClass]="{'fa-gear': url === '/select', 'fa-chevron-left': url !== '/select'}"
+    <i class="menu fa {{ urlicon }}"
         aria-hidden="true" (click)='doEnterSetup($event)'></i>
-    <div class="sub">Ver. {{ version }}</div>
+</div>
+<router-outlet></router-outlet>
 </div>
 
-<router-outlet></router-outlet>

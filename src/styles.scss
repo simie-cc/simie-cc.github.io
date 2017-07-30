@@ -6,12 +6,20 @@
 @import '~font-awesome/css/font-awesome.min.css';
 
 // Noto Sans font TC
-@import url(https://fonts.googleapis.com/earlyaccess/notosanstc.css);
+// from @import url(https://fonts.googleapis.com/earlyaccess/notosanstc.css);
+@font-face {
+   font-family: 'Noto Sans TC';
+   font-style: normal;
+   font-weight: 400;
+   src: url(/assets/fonts/NotoSansTC-Regular.woff2) format('woff2'),
+        url(/assets/fonts/NotoSansTC-Regular.woff) format('woff'),
+        url(/assets/fonts/NotoSansTC-Regular.otf) format('opentype');
+}
 
 * { box-sizing: border-box; }
 
 html {
-    font-family: 'Noto Sans TC', sans-serif;
+    font-family: 'Noto Sans', 'Noto Sans TC', sans-serif;
     font-size: 140%;
 }
 
@@ -25,6 +33,8 @@ body {
     line-height: 4rem;
     height: 4rem;
 }
+
+.content { position: relative; }
 
 h3,h4 {
     vertical-align: middle;
@@ -119,11 +129,11 @@ button:active {
 .host {
     background: white;
     z-index: 0;
-    position: fixed;
-    top: calc(/* padding */ 1em + /* font height */ 1.6em + /* padding */ 1em + /* margin */ 0.5em);
-    bottom: 0;
-    left: 0;
-    right: 0;
+    position: relative;
+    // top: calc(/* padding */ 1em + /* font height */ 1.6em + /* padding */ 1em + /* margin */ 0.5em);
+    // bottom: 0;
+    // left: 0;
+    // right: 0;
     overflow: scroll;
 
     &.base { z-index: -5; }

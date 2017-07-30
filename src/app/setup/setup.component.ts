@@ -1,7 +1,9 @@
 
-import { Component, HostBinding } from '@angular/core';
+import { Component, HostBinding, trigger } from '@angular/core';
 import { PersonRecord } from '../shared/person.record';
-import { routeAnimation, routeAnimation_left } from '../shared/route.animation';
+import { routeAnimation, routeAnimation_left, animations } from '../shared/route.animation';
+
+import * as V from '@env/version';
 
 import { StorageService } from '../storage.service';
 
@@ -9,20 +11,28 @@ import { StorageService } from '../storage.service';
     selector: 'app-setup',
     templateUrl: './setup.component.html',
     styleUrls: ['./setup.component.scss'],
-    host: {
-        'class': 'host','[@switchAnimation]': 'true'},
-    animations: [routeAnimation_left('switchAnimation')]
+    animations: animations()
+    // host: {
+    //     'class': 'host','[@switchAnimation]': 'true'},
+    // animations: [routeAnimation_left('switchAnimation')]
 })
 export class SetupComponent {
     constructor(
         public storageService: StorageService
-    ) { }
+    ) {
+        this.trigger(false);
+    }
+
+    /** 是否顥示(shown|hidden) */
+    setupShown;
 
     /** 是否在編輯模式 */
     editing: boolean = false;
 
     /** 文字編輯器的值 */
     edit_value: string;
+
+    version = V.Version + '.' + V.LastModified;
 
     /** 編輯參加者清單 */
     editPersons()
@@ -75,5 +85,20 @@ export class SetupComponent {
 
     cleanMatchUps() {
         this.storageService.matchUps = [];
+    }
+
+    show() {
+        this.trigger(true);
+    }
+
+    hide() {
+        this.trigger(false);
+    }
+
+    trigger(show?: boolean) {
+        if (typeof show === 'undefined') {
+            show = ! (this.setupShown === 'shown');
+        }
+        this.setupShown = show ? 'shown' : 'hidden';
     }
 }

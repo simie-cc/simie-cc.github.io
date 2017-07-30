@@ -1,5 +1,5 @@
 
-import { trigger, animate, style, transition } from '@angular/core';
+import { trigger, animate, style, transition, state, AnimationTriggerMetadata } from '@angular/core';
 
 export function routeAnimation(name) {
     return routeAnimation_4(name);
@@ -20,13 +20,13 @@ function routeAnimation_1(name) {
             style(startingStyles({
                 transform: 'translateX(100%)'
             })),
-            animate('300ms ease-out', style({ transform: 'translateX(0%)'}))
+            animate('300ms ease-out', style({ transform: 'translateX(0%)' }))
         ]),
         transition('* => void', [
             style(startingStyles({
                 transform: 'translateX(0%)'
             })),
-            animate('200ms ease-in', style({ transform: 'translateX(-100%)'}))
+            animate('200ms ease-in', style({ transform: 'translateX(-100%)' }))
         ])
     ]);
 }
@@ -35,11 +35,11 @@ function routeAnimation_2(name) {
     return trigger(name, [
         transition('void => *', [
             style(startingStyles({ transform: 'translateX(100%)' })),
-            animate('2s ease-out', style({transform: 'translateX(0%)'}))
+            animate('2s ease-out', style({ transform: 'translateX(0%)' }))
         ]),
         transition('* => void', [
             style(startingStyles({ transform: 'scale(1)' })),
-            animate('2s ease-in', style({transform: 'scale(0)'}))
+            animate('2s ease-in', style({ transform: 'scale(0)' }))
         ])
     ]);
 }
@@ -48,11 +48,11 @@ function routeAnimation_3(name) {
     return trigger(name, [
         transition('void => *', [
             style(startingStyles({ transform: 'scale(1.2)', opacity: 0.5 })),
-            animate('300ms ease-out', style({transform: 'scale(1)', opacity: 1 }))
+            animate('300ms ease-out', style({ transform: 'scale(1)', opacity: 1 }))
         ]),
         transition('* => void', [
             style(startingStyles({ opacity: 1 })),
-            animate('250ms ease-in', style({opacity: 0}))
+            animate('250ms ease-in', style({ opacity: 0 }))
         ])
     ]);
 }
@@ -107,6 +107,29 @@ export function no_animation(name) {
     ]);
 }
 
+export function animations(): AnimationTriggerMetadata[] {
+    return [
+        contentBlockAnimation(),
+        setupAnimation(),
+    ];
+}
+
+export const TRIGGER_SETUP = '700ms ease-in-out';
+export function setupAnimation(): AnimationTriggerMetadata {
+    return trigger('setupAnimation', [
+        state('hidden', style({ 'box-shadow': 'none', transform: "translateX(-100%)" })),
+        state('shown', style({ 'box-shadow': '5px 0 10px #888888', transform: "translateX(0)" })),
+        transition('hidden => shown, shown => hidden', animate(TRIGGER_SETUP))
+    ])
+}
+
+export function contentBlockAnimation(): AnimationTriggerMetadata {
+    return trigger('contentAnimation', [
+        state('hidden', style({ transform: 'translateX(0)' })),
+        state('shown', style({ transform: 'translateX(80%)' })),
+        transition('hidden => shown, shown => hidden', animate(TRIGGER_SETUP))
+    ]);
+}
 
 /*
 state('in', style({transform: 'translateX(0) scale(1)'})),

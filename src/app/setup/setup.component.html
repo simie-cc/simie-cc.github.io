@@ -1,4 +1,6 @@
-<div class="setup-core-block">
+<div class="setup-core-block" [@setupAnimation]='setupShown'>
+    <i class="menu close fa fa-close"
+        aria-hidden="true" (click)='hide()'></i>
     <ul>
         <li><a (click)='editPersons()'><i class="fa fa-users" aria-hidden="true"></i> 編輯人員</a></li>
          <li>
@@ -7,8 +9,9 @@
                 (valueChanges)="storageService.save()"></app-switch-button>
         </li>
         <li><a (click)='cleanMatchUps()'><i class="fa fa-close"></i> 清除分隊結果</a></li>
-        <li>模式：simple priority</li>
+        <!-- <li>模式：simple priority</li> -->
     </ul>
+    <div class="sub">Ver. {{ version }}</div>
 </div>
 
 <div class='fullscreen-edit' *ngIf="editing">

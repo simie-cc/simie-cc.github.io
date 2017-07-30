@@ -32,7 +32,7 @@ git commit -m ":bookmark: Bump version number"
 
 set -o verbose
 
-ng build --prod
+ng build --prod --aot
 git checkout master
 git pull
 rm -rf *.html *.js *.gz assets

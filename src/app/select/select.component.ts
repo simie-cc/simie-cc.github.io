@@ -71,7 +71,7 @@ export class SelectComponent {
             results.push(new MatchUp(
                 joiner_list.map((value) => value.name), starter, first
             ));
-            first = false;
+            //first = false;
         }
 
         this.checkRemain();
