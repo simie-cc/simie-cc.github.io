@@ -28,7 +28,7 @@ body {
 }
 
 .header {
-    background-color: #c4ffb2;/*#9BF1FF*/
+    background-color: rgb(242,247,224);//#c4ffb2;/*#9BF1FF*/
     position: relative;
     line-height: 4rem;
     height: 4rem;
@@ -95,7 +95,12 @@ button {
     margin: 5px;
     padding: .4em .4em;
 
-    box-shadow: .05em .05em .05em #888888;
+    box-shadow: .05em .05em 5px #888888;
+}
+
+button:active {
+    transform: translate(10px,10px);
+    box-shadow: none;
 }
 
 .buttons-pad {
